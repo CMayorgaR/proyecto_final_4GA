@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.css'
+import Calendar from 'react-calendar'; //Use by adding <Calendar />. Use onChange prop for getting new values
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
