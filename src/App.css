@@ -26,3 +26,9 @@
     height: 886px;
     background: linear-gradient(270deg, #D3D8E9 0%, #B9CD41 100%);
 }
+
+.forms {
+    width: 23%;
+    text-align: center;
+    padding-top: 30px;
+}
