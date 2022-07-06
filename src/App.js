@@ -7,7 +7,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/create_menu" element={<NewMenu />} />
+          <Route path="/new_menu" element={<NewMenu />} />
         </Routes>
       </BrowserRouter>
     </div>
