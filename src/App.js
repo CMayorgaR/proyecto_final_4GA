@@ -1,12 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import CreateMenu from './Components/CreateMenu';
+import NewMenu from './Views/NewMenu';
 
 function App() {
   return (
     <div>
-     <CreateMenu />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/create_menu" element={<NewMenu />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
