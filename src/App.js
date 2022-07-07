@@ -1,14 +1,21 @@
-
 import './App.css';
-import  CalendarMenu  from '../src/Components/CalendarMenu';
-//import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Calendar from './Views/Calendar';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 
 function App() {
   return (
-    <div className="App">
-      <CalendarMenu/>
-    </div>
+    
+      <BrowserRouter>
+      <Routes>
+        <Route path ="/calendar" element={<Calendar />} />
+
+      </Routes>
+      </BrowserRouter>   
+    
+
   );
+
 }
 
 export default App;
