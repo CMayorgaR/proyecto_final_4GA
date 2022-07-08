@@ -32,5 +32,4 @@ function ModalMenu() {
         </div>
     );
 }
-
 export default ModalMenu;

@@ -1,11 +1,11 @@
 import CalendarMenu from "../Components/CalendarMenu";
 import Navbar from "../Components/Navbar";
 
-const Calendar= ()=> {
-    return(
+const Calendar = () => {
+    return (
         <>
-        <Navbar title="Selecciona una fecha" />
-        <CalendarMenu />
+            <Navbar title="Selecciona una fecha" />
+            <CalendarMenu />
         </>
     )
 };
