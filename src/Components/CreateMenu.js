@@ -1,6 +1,10 @@
 import Navbar from "./Navbar";
 import { useContext } from "react";
 import { Context } from "../Store/appContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCirclePlus, faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+
+//<FontAwesomeIcon icon="fa-solid fa-circle-plus" />
 
 
 const CreateMenu = () => {
@@ -16,7 +20,7 @@ const CreateMenu = () => {
             <br />
             <textarea className="form-control" rows="4" placeholder="Añadir descripción"></textarea>
             <br />
-            <button className="btn btn-success float-end">+</button>
+            <button className="btn btn-success float-end" type="submit"><FontAwesomeIcon icon= {faCirclePlus} /></button>
           </form>
           <form className="flex-column mb-3 forms">
             <label className="form-label">Plato de fondo:
@@ -25,7 +29,7 @@ const CreateMenu = () => {
             <br />
             <textarea className="form-control" rows="4" placeholder="Añadir descripción"></textarea>
             <br />
-            <button className="btn btn-success float-end">+</button>
+            <button className="btn btn-success float-end" type="submit"><FontAwesomeIcon icon= {faCirclePlus} /></button>
           </form>
           <form className="flex-column mb-3 forms">
             <label className="form-label">Ensalada:
@@ -34,7 +38,7 @@ const CreateMenu = () => {
             <br />
             <textarea className="form-control" rows="4" placeholder="Añadir descripción"></textarea>
             <br />
-            <button className="btn btn-success float-end">+</button>
+            <button className="btn btn-success float-end" type="submit"><FontAwesomeIcon icon= {faCirclePlus} /></button>
           </form>
           <form className="flex-column mb-3 forms">
             <label className="form-label">Postre:
@@ -43,10 +47,10 @@ const CreateMenu = () => {
             <br />
             <textarea className="form-control" rows="4" placeholder="Añadir descripción"></textarea>
             <br />
-            <button className="btn btn-success float-end">+</button>
+            <button className="btn btn-success float-end" type="submit"><FontAwesomeIcon icon= {faCirclePlus} /></button>
           </form>
         </div>
-        <div className="container-fluid justify-content-center lista navbar-text">
+        <div className="container-fluid justify-content-between lista navbar-text">
           <p class="text-center">Elementos guardados:</p>
           <ul className="list-group">
             <li className="list-group-item">Un elemento de la lista</li>
