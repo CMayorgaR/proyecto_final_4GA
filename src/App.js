@@ -8,6 +8,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/calendar" element={<Calendar />} />
+        <Route path="/calendar/:date" element={<Calendar />} />
       </Routes>
     </BrowserRouter>
   );
