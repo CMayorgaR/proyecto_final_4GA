@@ -1,71 +1,14 @@
-import { useContext, useState } from "react";
-import { Context } from "../Store/appContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import NewEntry from "./NewEntry";
 
 const CreateMenu = () => {
-  const {actions , store } = useContext(Context); 
-  const [save, setSave] = useState({
-    "name":"",
-    "description":""
-  });
-  const [send, setSend] = useState(false);
-  const onChange = (e) => {
-    setSave ({...save, [e.target.name]:e.target.value});
-    if (e.target.value != ""){
-      setSend(true)
-    }
-    else {
-      setSend(false)}
-  };
-
   return (
     <>
       <div className="vista-color container-fluid">
         <div className="d-flex justify-content-between">
-          <form className="flex-column mb-3 forms" onSubmit={(evento)=>{actions.addMeal(save, evento, send)}}>
-            <label className="form-label">Entrada:
-            </label>
-            <input type="text" name="name" className="form-control" rows="2" placeholder="Añadir entrada" onChange={(e)=>onChange(e)}/>
-            <br />
-            <textarea name="description" className="form-control" rows="4" placeholder="Añadir descripción" onChange={(e)=>onChange(e)}></textarea>
-            <br />
-            <button className="btn btn-success float-end" type="submit" ><FontAwesomeIcon icon= {faCirclePlus} /></button>
-          </form>
-          <form className="flex-column mb-3 forms">
-            <label className="form-label">Plato de fondo:
-            </label>
-            <input type="text" className="form-control" rows="2" placeholder="Añadir plato de fondo" />
-            <br />
-            <textarea className="form-control" rows="4" placeholder="Añadir descripción"></textarea>
-            <br />
-            <button className="btn btn-success float-end" type="submit"><FontAwesomeIcon icon= {faCirclePlus} /></button>
-          </form>
-          <form className="flex-column mb-3 forms">
-            <label className="form-label">Ensalada:
-            </label>
-            <input type="text" className="form-control" rows="2" placeholder="Añadir ensalada" />
-            <br />
-            <textarea className="form-control" rows="4" placeholder="Añadir descripción"></textarea>
-            <br />
-            <button className="btn btn-success float-end" type="submit"><FontAwesomeIcon icon= {faCirclePlus} /></button>
-          </form>
-          <form className="flex-column mb-3 forms" >
-            <label className="form-label">Postre:
-            </label>
-            <input type="text" className="form-control" rows="2" placeholder="Añadir postre" />
-            <br />
-            <textarea className="form-control" rows="4" placeholder="Añadir descripción"></textarea>
-            <br />
-            <button className="btn btn-success float-end" type="submit"><FontAwesomeIcon icon= {faCirclePlus} /></button>
-          </form>
-        </div>
-        <div className="container-fluid justify-content-between lista navbar-text">
-          <p className="text-center">Elementos guardados:</p>
-          <ul className="list-group">
-            <li className="list-group-item">Un elemento de la lista</li>
-            <li className="list-group-item">Otro elemento de la lista</li>
-          </ul>
+         <NewEntry title="Entrada" ruta="http://127.0.0.1:5000/starter" />
+         <NewEntry title="Plato de Fondo" ruta="http://127.0.0.1:5000/main"/>
+         <NewEntry title="Ensalada" ruta="http://127.0.0.1:5000/salad" />
+         <NewEntry title="Postre" ruta="http://127.0.0.1:5000/dessert"/>
         </div>
       </div>
     </>
