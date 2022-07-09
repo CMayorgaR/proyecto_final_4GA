@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import injectContext from './Store/appContext';
 import NewMenu from './Views/NewMenu';
 
 function App() {
@@ -14,4 +15,4 @@ function App() {
   );
 }
 
-export default App;
+export default injectContext(App);

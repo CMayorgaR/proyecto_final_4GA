@@ -1,26 +1,36 @@
-import Navbar from "./Navbar";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Context } from "../Store/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlus, faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-
-//<FontAwesomeIcon icon="fa-solid fa-circle-plus" />
-
+import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 const CreateMenu = () => {
-  //const {actions , store } = useContext(Context); 
+  const {actions , store } = useContext(Context); 
+  const [save, setSave] = useState({
+    "name":"",
+    "description":""
+  });
+  const [send, setSend] = useState(false);
+  const onChange = (e) => {
+    setSave ({...save, [e.target.name]:e.target.value});
+    if (e.target.value != ""){
+      setSend(true)
+    }
+    else {
+      setSend(false)}
+  };
+
   return (
     <>
       <div className="vista-color container-fluid">
         <div className="d-flex justify-content-between">
-          <form className="flex-column mb-3 forms">
+          <form className="flex-column mb-3 forms" onSubmit={(evento)=>{actions.addMeal(save, evento, send)}}>
             <label className="form-label">Entrada:
             </label>
-            <input type="text" className="form-control" rows="2" placeholder="Añadir entrada" />
+            <input type="text" name="name" className="form-control" rows="2" placeholder="Añadir entrada" onChange={(e)=>onChange(e)}/>
             <br />
-            <textarea className="form-control" rows="4" placeholder="Añadir descripción"></textarea>
+            <textarea name="description" className="form-control" rows="4" placeholder="Añadir descripción" onChange={(e)=>onChange(e)}></textarea>
             <br />
-            <button className="btn btn-success float-end" type="submit"><FontAwesomeIcon icon= {faCirclePlus} /></button>
+            <button className="btn btn-success float-end" type="submit" ><FontAwesomeIcon icon= {faCirclePlus} /></button>
           </form>
           <form className="flex-column mb-3 forms">
             <label className="form-label">Plato de fondo:
@@ -40,7 +50,7 @@ const CreateMenu = () => {
             <br />
             <button className="btn btn-success float-end" type="submit"><FontAwesomeIcon icon= {faCirclePlus} /></button>
           </form>
-          <form className="flex-column mb-3 forms">
+          <form className="flex-column mb-3 forms" >
             <label className="form-label">Postre:
             </label>
             <input type="text" className="form-control" rows="2" placeholder="Añadir postre" />
@@ -51,7 +61,7 @@ const CreateMenu = () => {
           </form>
         </div>
         <div className="container-fluid justify-content-between lista navbar-text">
-          <p class="text-center">Elementos guardados:</p>
+          <p className="text-center">Elementos guardados:</p>
           <ul className="list-group">
             <li className="list-group-item">Un elemento de la lista</li>
             <li className="list-group-item">Otro elemento de la lista</li>
