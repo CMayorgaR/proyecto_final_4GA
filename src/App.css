@@ -38,3 +38,24 @@
     text-align: center;
     padding-top: 70px;
 }
+    
+body {
+  background: linear-gradient(270deg, #D3D8E9 0%, #B9CD41 100%);
+}
+
+
+img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+a:-webkit-any-link {
+  text-decoration: none;
+  color: #5C990D;
+  cursor: pointer;
+}
+
+form {
+  color:#5C990D;
+}
