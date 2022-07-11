@@ -1,4 +1,5 @@
 import NewEntry from "./NewEntry";
+import SavedMeals from "./SavedMeals";
 
 const CreateMenu = () => {
   return (
@@ -10,6 +11,7 @@ const CreateMenu = () => {
          <NewEntry title="Ensalada" ruta="http://127.0.0.1:5000/salad" />
          <NewEntry title="Postre" ruta="http://127.0.0.1:5000/dessert"/>
         </div>
+        <SavedMeals />
       </div>
     </>
   );
