@@ -6,9 +6,9 @@ import Register from './Views/Register';
 import Login from './Views/Login';
 import ResetPass from './Views/ResetPass';
 import CreateProfile from './Views/CreateProfile';
+import NewMenu from './Views/NewMenu';
 
-
-function App() {
+function App(){
   return (
     <BrowserRouter>
       <Routes>
@@ -18,6 +18,7 @@ function App() {
         <Route path='/' element={<Login />} />
         <Route path='/reset' element={<ResetPass />} />
         <Route path='/createProfile' element={<CreateProfile />} />
+        <Route path="/new_menu" element={<NewMenu />} />
       </Routes>
     </BrowserRouter>
   );
