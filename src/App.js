@@ -5,6 +5,7 @@ import injectContext from './Store/appContext';
 import Register from './Views/Register';
 import Login from './Views/Login';
 import ResetPass from './Views/ResetPass';
+import CreateProfile from './Views/CreateProfile';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/' element={<Login />} />
         <Route path='/reset' element={<ResetPass />} />
+        <Route path='/createProfile' element={<CreateProfile />} />
       </Routes>
     </BrowserRouter>
   );
