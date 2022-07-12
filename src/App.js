@@ -7,6 +7,8 @@ import Login from './Views/Login';
 import ResetPass from './Views/ResetPass';
 import CreateProfile from './Views/CreateProfile';
 import NewMenu from './Views/NewMenu';
+import  Roles from './Views/Roles';
+
 
 function App(){
   return (
@@ -19,6 +21,7 @@ function App(){
         <Route path='/reset' element={<ResetPass />} />
         <Route path='/createProfile' element={<CreateProfile />} />
         <Route path="/new_menu" element={<NewMenu />} />
+        <Route path="/roles" element={<Roles />} />
       </Routes>
     </BrowserRouter>
   );
