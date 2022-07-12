@@ -11,7 +11,12 @@ const CreateMenu = () => {
          <NewEntry title="Ensalada" ruta="http://127.0.0.1:5000/salad" />
          <NewEntry title="Postre" ruta="http://127.0.0.1:5000/dessert"/>
         </div>
+        <div className="d-flex justify-content-between">
         <SavedMeals />
+        <SavedMeals />
+        <SavedMeals />
+        <SavedMeals />
+        </div>
       </div>
     </>
   );
