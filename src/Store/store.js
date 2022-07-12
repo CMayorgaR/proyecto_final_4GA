@@ -1,5 +1,4 @@
 const API_URL = "http://127.0.0.1:5000";
-// const APIusers =
 
 const getState = ({ setStore, getActions, getStore }) => {
   return {
@@ -25,6 +24,9 @@ const getState = ({ setStore, getActions, getStore }) => {
         name: "",
         description: "",
       },
+      saved_meals: {
+        name: ""
+      },
     },
     actions: {
       addMeal: (data, send, ruta) => {
@@ -41,6 +43,13 @@ const getState = ({ setStore, getActions, getStore }) => {
             .catch((error) => console.log(error));
         }
       },
+
+      getMeal:(ruta) => {
+        fetch(`http://127.0.0.1:5000${ruta}`)
+        .then((res) => res.json())
+        .then((data) => setStore({saved_meals:data}))
+        .catch((error) => console.log(error));
+      }, 
 
       // handleChangeLogin: (evento) => { //recoje info del formulario
       //     const {user} = getStore();

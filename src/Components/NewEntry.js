@@ -28,14 +28,16 @@ const NewEntry = (props) => {
   };
 
 return (
-    <form className="flex-column mb-3 forms" onSubmit={(evento)=>onSubmit(evento)}>
+    <div className="flex-column mb-3 forms">
+      <form onSubmit={(evento)=>onSubmit(evento)}>
         <label className="form-label">{props.title}</label>
         <input type="text" name="name" className="form-control" rows="2" placeholder="Añadir entrada" value={save.name} onChange={(e)=>onChange(e)}/>
         <br />
         <textarea name="description" className="form-control" rows="4" placeholder="Añadir descripción" value={save.description} onChange={(e)=>onChange(e)}></textarea>
         <br />
         <button className="btn btn-success float-end" disabled={!send} type="submit"><FontAwesomeIcon icon= {faCirclePlus} /></button>
-    </form>   
+      </form>
+    </div>      
 )
 };
 
