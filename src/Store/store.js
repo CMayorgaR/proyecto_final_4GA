@@ -24,9 +24,18 @@ const getState = ({ setStore, getActions, getStore }) => {
         name: "",
         description: "",
       },
-      saved_meals: {
+      saved_starters:[{
         name: ""
-      },
+      }],
+      saved_mains:[{
+        name:""
+      }],
+      saved_salads:[{
+        name:""
+      }],
+      saved_desserts:[{
+        name:""
+      }],
     },
     actions: {
       addMeal: (data, send, ruta) => {
@@ -44,13 +53,30 @@ const getState = ({ setStore, getActions, getStore }) => {
         }
       },
 
-      getMeal:(ruta) => {
-        fetch(`http://127.0.0.1:5000${ruta}`)
+      getStarters:() => {
+        fetch('http://127.0.0.1:5000/starters')
         .then((res) => res.json())
-        .then((data) => setStore({saved_meals:data}))
+        .then((data) => setStore({saved_starters:data}))
+        .catch((error) => console.log(error));
+      },
+      getMains:() => {
+        fetch('http://127.0.0.1:5000/mains')
+        .then((res) => res.json())
+        .then((data) => setStore({saved_mains:data}))
         .catch((error) => console.log(error));
       }, 
-
+      getSalads:()=>{
+        fetch('http://127.0.0.1:5000/salads')
+        .then((res) => res.json())
+        .then((data) => setStore({saved_salads:data}))
+        .catch((error) => console.log(error));
+      },
+      getDesserts:()=>{
+        fetch('http://127.0.0.1:5000/desserts')
+        .then((res) => res.json())
+        .then((data) => setStore({saved_desserts:data}))
+        .catch((error) => console.log(error));
+      },
       // handleChangeLogin: (evento) => { //recoje info del formulario
       //     const {user} = getStore();
       //     setStore({
