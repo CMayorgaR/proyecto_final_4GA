@@ -82,7 +82,7 @@ const getState = ({ setStore, getActions, getStore }) => {
            .then((data) => console.log(data))
            .catch((error) => console.log(error));
        }, */
-      removeStarter: (id) => {
+      /* removeStarter: (id) => {
         fetch('http://127.0.0.1:5000/starter/' + id, {
           method: 'DELETE',
           headers: {
@@ -92,7 +92,9 @@ const getState = ({ setStore, getActions, getStore }) => {
         .then ((res)=> res.json())
         .then(() => {console.log('removed');})
         .catch(error => {console.log(error)});
-      },
+      }, */
+      
+
       // handleChangeLogin: (evento) => { //recoje info del formulario
       //     const {user} = getStore();
       //     setStore({
