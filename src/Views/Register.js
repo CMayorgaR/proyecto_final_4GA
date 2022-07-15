@@ -21,10 +21,10 @@ const Register = () => {
                                                 <Link to='/'><h4 className="mt-1 mb-5 pb-1">MasterMenu</h4></Link>
                                             </div>
 
-                                            <form>
+                                            <form onSubmit={actions.handleSubmitRegister}>
                                                 <p>Crea a tu cuenta</p>
                                                 <div className="form-outline mb-4">
-                                                    <input onChange={actions.handleChangeRegister} name='nombre' type="text" id="form2Example11" className="form-control" required pattern="[a-z]{4,8}"  />
+                                                    <input onChange={actions.handleChangeRegister} name='full_name' type="text" id="form2Example11" className="form-control" required pattern="[a-z]{4,8}"  />
                                                     <label className="form-label" htmlFor="form2Example11">Nombre</label>
                                                 </div>
                                                 <div className="form-outline mb-4">

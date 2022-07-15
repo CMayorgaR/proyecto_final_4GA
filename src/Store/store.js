@@ -1,11 +1,11 @@
-// const APIusers = 
+const APIusers = 'http://localhost:8080/create_user'
 
 const getState = ({setStore, getActions, getStore}) => {
 
     return {
         store:{
             user:{
-                nombre:'',
+                full_name:'',
                 email: '',
                 password:''
             }
@@ -33,6 +33,7 @@ const getState = ({setStore, getActions, getStore}) => {
             // },
             handleChangeRegister: (evento) => { //recoje info del formulario
                 const {user} = getStore(); 
+                console.log(evento.target.name)
                 setStore({
                     user:{ //user es un objeto
                         ...user, //mantiene todas las propiedades de user.
@@ -40,17 +41,17 @@ const getState = ({setStore, getActions, getStore}) => {
                     }
                 })
             },
-            // handleSubmitRegister: (evento) =>{ //
-            //     evento.preventDefault(); //evitamos que la pag vuelva a cargar.
-            //     const {user} = getStore() //traeme el usuario del store
-            //     fetch(APIusers,{
-            //         method:"POST",
-            //         headers: {
-            //             "Content-Type": "application/json" //el lenguaje de comunicacion es json
-            //         },
-            //         body:JSON.stringify(user)
-            //     }).then(res => res.json()).then(data => console.log(data))//convertimos la respuesta de json a js y luego le hacemos un consolelog
-            // }
+            handleSubmitRegister: (evento) =>{ //
+                evento.preventDefault(); //evitamos que la pag vuelva a cargar.
+                const {user} = getStore() //traeme el usuario del store
+                fetch(APIusers,{
+                    method:"POST",
+                    headers: {
+                        "Content-Type": "application/json" //el lenguaje de comunicacion es json
+                    },
+                    body:JSON.stringify(user)
+                }).then(res => res.json()).then(data => console.log(data))//convertimos la respuesta de json a js y luego le hacemos un consolelog
+            }
         }
     }
 }
