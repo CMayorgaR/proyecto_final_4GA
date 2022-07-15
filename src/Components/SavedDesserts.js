@@ -7,19 +7,19 @@ const SavedDesserts = () => {
     const { actions, store } = useContext(Context)
     useEffect(() => {
         actions.getDesserts();
-    },[store.saved_desserts]); //todo lo que está dentro de los corchetes implica todas las veces que se va a ejecutar el efecto
-    
+    }, []); //todo lo que está dentro de los corchetes implica todas las veces que se va a ejecutar el efecto
+
     return (
-    <div className="flex-column mb-3">
-        <h1 className="fs-6 navbar-text text-center">Opciones guardadas</h1> 
-        <ul className="list-group text-start">
-        {store.saved_desserts.map((item, index)=>{
-                return (
-                    <li className="list-group-item" key={index}>{item.name}<EditButton /> <DeleteButton /> </li> 
-                )
-            })}
-        </ul>
-    </div>
+        <div className="flex-column mb-3">
+            <h1 className="fs-6 navbar-text text-center">Opciones guardadas</h1>
+            <ul className="list-group text-start">
+                {store.saved_desserts.map((item, index) => {
+                    return (
+                        <li className="list-group-item" key={index}>{item.name}<EditButton /> <DeleteButton /> </li>
+                    )
+                })}
+            </ul>
+        </div>
     )
 };
 

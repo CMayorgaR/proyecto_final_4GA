@@ -5,12 +5,12 @@ import SavedDesserts from "./SavedDesserts";
 
 const SavedMeals = () => {
     return (
-    <>  
-        <SavedStarters />
-        <SavedMains />
-        <SavedSalads />
-        <SavedDesserts />
-    </>
+        <>
+            <SavedStarters />
+            <SavedMains />
+            <SavedSalads />
+            <SavedDesserts />
+        </>
     )
 };
 
