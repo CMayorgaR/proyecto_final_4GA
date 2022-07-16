@@ -39,6 +39,7 @@ const getState = ({ setStore, getActions, getStore }) => {
     },
     actions: {
       addMeal: (data, send, ruta) => {
+        const actions = getActions()
         if (send == true) {
           fetch(ruta, {
             method: "POST",
@@ -48,14 +49,14 @@ const getState = ({ setStore, getActions, getStore }) => {
             body: JSON.stringify(data),
           })
             .then((res) => res.json())
-            .then((data) => console.log(data))
+            .then((data) => actions.getStarters()) //funciona!!!
             .catch((error) => console.log(error));
         }
       },
       getStarters: () => {
         fetch('http://127.0.0.1:5000/starter')
           .then((res) => res.json())
-          .then((data) => setStore({ saved_starters: data }))
+          .then((data) => {setStore({ saved_starters: data })}) //if data is true fetch GET setear la variable de la lista store.saved_starters
           .catch((error) => console.log(error));
       },
       getMains: () => {
