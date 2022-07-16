@@ -8,7 +8,7 @@
     font-weight: 500;
     font-size: 40px;
     line-height: 36px;
-    color: #6fb712;
+    color: #afcc88;
 }
 
 .navbar-text {
@@ -28,14 +28,27 @@
 }
 
 .forms {
-    width: 23%;
+    width: 200%;
     text-align: center;
     padding-top: 30px;
 }
-    
-body {
+
+.lista {
+    width: 90%;
+    text-align: center;
+    padding-top: 70px;
+}
+
+.vista-calendar {
+    padding-top: 30px;
+    text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+body{
   background: linear-gradient(270deg, #D3D8E9 0%, #B9CD41 100%);
 }
+    
 
 
 img {
@@ -54,3 +67,6 @@ form {
   color:#5C990D;
 }
 
+.CreateProfile{
+         padding-left: 30px;
+}
