@@ -1,16 +1,22 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Context } from "../Store/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import EditButton from "./EditButton";
+import DeleteButton from "./DeleteButton";
 
 
-const NewEntry = (props) => {
+const CreateSaveDesserts = (props) => {
   const { actions, store } = useContext(Context);
   const [save, setSave] = useState({
     name: "",
     description: "",
   });
   const [send, setSend] = useState(false);
+  useEffect(() => {
+    actions.getDesserts ();
+}, []);
+
   const onChange = (e) => {
     setSave({ ...save, [e.target.name]: e.target.value });
     if (e.target.value != "") {
@@ -22,7 +28,7 @@ const NewEntry = (props) => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    actions.addMeal(save, send, props.ruta);
+    actions.addDesserts(save, send, props.ruta);
     setSave({
       name: "",
       description: ""
@@ -32,7 +38,7 @@ const NewEntry = (props) => {
   };
 
   return (
-    <div className="flex-column mb-3 forms">
+    <div className="flex-column forms col">
       <form onSubmit={(evento) => onSubmit(evento)}>
         <label className="form-label">{props.title}</label>
         <input type="text" name="name" className="form-control" rows="2" placeholder="Añadir entrada" value={save.name} onChange={(e) => onChange(e)} />
@@ -41,8 +47,18 @@ const NewEntry = (props) => {
         <br />
         <button className="btn btn-success float-end" disabled={!send} type="submit"><FontAwesomeIcon icon={faCirclePlus} /></button>
       </form>
+      <div className="flex-column mt-5">
+            <h1 className="fs-6 navbar-text text-center">Opciones guardadas</h1>
+            <ul className="list-group text-start">
+                {store.saved_desserts.map((item, index) => {
+                    return (
+                        <li className="list-group-item" key={index}>{item.name}<EditButton /> <DeleteButton /> </li>
+                    )
+                })}
+            </ul>
+        </div>
     </div>
   )
 };
 
-export default NewEntry;
+export default CreateSaveDesserts;
