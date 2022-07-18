@@ -35,12 +35,12 @@ const CreateSaveStarters = (props) => {
     setSend(false);
   };
 
- /*  const erase = (id) => {
+  const erase = (id) => {
     const newlist = store.saved_starters
     const newerlist= newlist.filter((item, index) => index != id);
     setSave(...newlist, newerlist)
     console.log(newerlist)
-  }; */ /* EN DESARROLLO */
+  }; /* EN DESARROLLO */
 
   return (
     <div className="flex-column mb-3 forms col">
