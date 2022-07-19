@@ -1,8 +1,8 @@
 import { useContext, useState, useEffect } from "react";
 import { Context } from "../Store/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlus, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import EditButton from "./EditButton";
+import { faCirclePlus, faTrashCan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+
 
 const CreateSaveStarters = (props) => {
   const { actions, store } = useContext(Context);
@@ -11,7 +11,10 @@ const CreateSaveStarters = (props) => {
     name: "",
     description: "",
   });
+
   const [send, setSend] = useState(false);
+
+  const [edit, setEdit] = useState(false);
   
   useEffect(() => {
     actions.getStarters();
@@ -25,6 +28,7 @@ const CreateSaveStarters = (props) => {
       setSend(false);
     }
   };
+
   const onSubmit = (e) => {
     e.preventDefault();
     actions.addStarters(save, send, props.ruta);
@@ -35,13 +39,9 @@ const CreateSaveStarters = (props) => {
     setSend(false);
   };
 
-  const erase = (id) => {
-    const newlist = store.saved_starters
-    const newerlist= newlist.filter((item, index) => index != id);
-    setSave(...newlist, newerlist)
-    console.log(newerlist)
-  }; /* EN DESARROLLO */
 
+  console.log(edit)
+  
   return (
     <div className="flex-column mb-3 forms col">
       <form onSubmit={(evento) => onSubmit(evento)}>
@@ -75,9 +75,17 @@ const CreateSaveStarters = (props) => {
           {store.saved_starters.map((item, index) => {
             return (
               <li className="list-group-item" key={index}>
-                {item.name}
-                <EditButton />
-                <button type="button" className="btn btn-outline-success" onClick={()=>erase(index)}>
+                {!edit ? item.name : <form onSubmit={()=>actions.editStarter}>
+                <input type="text" className="form-control" rows="2" placeholder={item.name}></input>
+                <input type="text" className="form-control" rows="2" placeholder={item.description}></input>
+                <button className="btn btn-success float-end" type="submit">
+                <FontAwesomeIcon icon={faCirclePlus} />
+                </button>
+                </form>}
+                <button type="button" className="btn btn-outline-success" onClick={()=>setEdit(!edit)}>
+                  <FontAwesomeIcon icon= {faPenToSquare} />
+                </button>
+                <button type="button" className="btn btn-outline-success" onClick={()=> actions.removeStarter(item.id)}>
                   <FontAwesomeIcon icon={faTrashCan} />
                 </button>
               </li>

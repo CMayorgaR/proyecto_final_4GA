@@ -1,8 +1,8 @@
 import { useContext, useState, useEffect } from "react";
 import { Context } from "../Store/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlus, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import EditButton from "./EditButton";
+import { faCirclePlus, faTrashCan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+
 
 const CreateSaveMains = (props) => {
   const { actions, store } = useContext(Context);
@@ -71,10 +71,12 @@ const CreateSaveMains = (props) => {
             return (
               <li className="list-group-item" key={index}>
                 {item.name}
-                <EditButton />{" "}
                 <button type="button" className="btn btn-outline-success">
+                  <FontAwesomeIcon icon= {faPenToSquare} />
+                </button>
+                <button type="button" className="btn btn-outline-success" onClick={()=> actions.removeMain(item.id)}>
                   <FontAwesomeIcon icon={faTrashCan} />
-                </button>{" "}
+                </button>
               </li>
             );
           })}

@@ -122,7 +122,8 @@ const getState = ({ setStore, getActions, getStore }) => {
           .then((data) => setStore({ saved_desserts: data }))
           .catch((error) => console.log(error));
       },
-      /* removeStarter: (id) => {
+      removeStarter: (id) => {
+        const actions = getActions();
         fetch('http://127.0.0.1:5000/starter/' + id, {
           method: 'DELETE',
           headers: {
@@ -130,10 +131,57 @@ const getState = ({ setStore, getActions, getStore }) => {
           },
         })
         .then ((res)=> res.json())
-        .then(() => {console.log('removed');})
+        .then((data) => actions.getStarters())
         .catch(error => {console.log(error)});
-      }, */
-      
+      },
+      removeMain: (id) => {
+        const actions = getActions();
+        fetch('http://127.0.0.1:5000/main/' + id, {
+          method: 'DELETE',
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then ((res)=> res.json())
+        .then((data) => actions.getMains())
+        .catch(error => {console.log(error)});
+      },
+      removeSalad: (id) => {
+        const actions = getActions();
+        fetch('http://127.0.0.1:5000/salad/' + id, {
+          method: 'DELETE',
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then ((res)=> res.json())
+        .then((data) => actions.getSalads())
+        .catch(error => {console.log(error)});
+      },
+      removeDessert: (id) => {
+        const actions = getActions();
+        fetch('http://127.0.0.1:5000/dessert/' + id, {
+          method: 'DELETE',
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then ((res)=> res.json())
+        .then((data) => actions.getDesserts())
+        .catch(error => {console.log(error)});
+      },
+      editStarter: (data, id) => {
+        const actions = getActions();
+        fetch('http://127.0.0.1:5000/starter/' + id, {
+          method: "PUT",
+          headers: {
+            'Content-Type': 'application/Json'
+          },
+          body: JSON.stringify(data)
+        }).then((res) => { return res.json() })
+          .then((data) => actions.getStarters())
+          .catch((error) => console.log(error));
+      },
 
       // handleChangeLogin: (evento) => { //recoje info del formulario
       //     const {user} = getStore();
