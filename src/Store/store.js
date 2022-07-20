@@ -38,7 +38,8 @@ const getState = ({ setStore, getActions, getStore }) => {
       }],
     },
     actions: {
-      addMeal: (data, send, ruta) => {
+      addStarters: (data, send, ruta) => {
+        const actions = getActions()
         if (send == true) {
           fetch(ruta, {
             method: "POST",
@@ -48,14 +49,59 @@ const getState = ({ setStore, getActions, getStore }) => {
             body: JSON.stringify(data),
           })
             .then((res) => res.json())
-            .then((data) => console.log(data))
+            .then((data) => actions.getStarters()) //funciona!!!
+            .catch((error) => console.log(error));
+        }
+      },
+      addMains: (data, send, ruta) => {
+        const actions = getActions()
+        if (send == true) {
+          fetch(ruta, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          })
+            .then((res) => res.json())
+            .then((data) => actions.getMains()) //funciona!!!
+            .catch((error) => console.log(error));
+        }
+      },
+      addSalads: (data, send, ruta) => {
+        const actions = getActions()
+        if (send == true) {
+          fetch(ruta, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          })
+            .then((res) => res.json())
+            .then((data) => actions.getSalads()) //funciona!!!
+            .catch((error) => console.log(error));
+        }
+      },
+      addDesserts: (data, send, ruta) => {
+        const actions = getActions()
+        if (send == true) {
+          fetch(ruta, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          })
+            .then((res) => res.json())
+            .then((data) => actions.getDesserts()) //funciona!!!
             .catch((error) => console.log(error));
         }
       },
       getStarters: () => {
         fetch('http://127.0.0.1:5000/starter')
           .then((res) => res.json())
-          .then((data) => setStore({ saved_starters: data }))
+          .then((data) => {setStore({ saved_starters: data })}) //if data is true fetch GET setear la variable de la lista store.saved_starters
           .catch((error) => console.log(error));
       },
       getMains: () => {
@@ -76,13 +122,8 @@ const getState = ({ setStore, getActions, getStore }) => {
           .then((data) => setStore({ saved_desserts: data }))
           .catch((error) => console.log(error));
       },
-      /*  getAll: (ruta) => {
-         fetch(ruta)
-           .then((res) => res.json())
-           .then((data) => console.log(data))
-           .catch((error) => console.log(error));
-       }, */
-      /* removeStarter: (id) => {
+      removeStarter: (id) => {
+        const actions = getActions();
         fetch('http://127.0.0.1:5000/starter/' + id, {
           method: 'DELETE',
           headers: {
@@ -90,10 +131,57 @@ const getState = ({ setStore, getActions, getStore }) => {
           },
         })
         .then ((res)=> res.json())
-        .then(() => {console.log('removed');})
+        .then((data) => actions.getStarters())
         .catch(error => {console.log(error)});
-      }, */
-      
+      },
+      removeMain: (id) => {
+        const actions = getActions();
+        fetch('http://127.0.0.1:5000/main/' + id, {
+          method: 'DELETE',
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then ((res)=> res.json())
+        .then((data) => actions.getMains())
+        .catch(error => {console.log(error)});
+      },
+      removeSalad: (id) => {
+        const actions = getActions();
+        fetch('http://127.0.0.1:5000/salad/' + id, {
+          method: 'DELETE',
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then ((res)=> res.json())
+        .then((data) => actions.getSalads())
+        .catch(error => {console.log(error)});
+      },
+      removeDessert: (id) => {
+        const actions = getActions();
+        fetch('http://127.0.0.1:5000/dessert/' + id, {
+          method: 'DELETE',
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then ((res)=> res.json())
+        .then((data) => actions.getDesserts())
+        .catch(error => {console.log(error)});
+      },
+      editStarter: (data, id) => {
+        const actions = getActions();
+        fetch('http://127.0.0.1:5000/starter/' + id, {
+          method: "PUT",
+          headers: {
+            'Content-Type': 'application/Json'
+          },
+          body: JSON.stringify(data)
+        }).then((res) => { return res.json() })
+          .then((data) => actions.getStarters())
+          .catch((error) => console.log(error));
+      },
 
       // handleChangeLogin: (evento) => { //recoje info del formulario
       //     const {user} = getStore();
