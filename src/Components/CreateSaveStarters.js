@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { Context } from "../Store/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus, faTrashCan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { Modal } from 'react-bootstrap'
 
 
 const CreateSaveStarters = (props) => {
@@ -14,8 +15,8 @@ const CreateSaveStarters = (props) => {
 
   const [send, setSend] = useState(false);
 
-  const [edit, setEdit] = useState(false);
-  
+  const [modal, setModal] = useState(false)
+
   useEffect(() => {
     actions.getStarters();
   }, []);
@@ -39,31 +40,13 @@ const CreateSaveStarters = (props) => {
     setSend(false);
   };
 
-
-  console.log(edit)
-  
   return (
     <div className="flex-column mb-3 forms col">
       <form onSubmit={(evento) => onSubmit(evento)}>
         <label className="form-label">{props.title}</label>
-        <input 
-          type="text"
-          name="name"
-          className="form-control"
-          rows="2"
-          placeholder="Añadir entrada"
-          value={save.name}
-          onChange={(e) => onChange(e)}
-        />
+        <input type="text" name="name" className="form-control" rows="2" placeholder="Añadir entrada" value={save.name} onChange={(e) => onChange(e)} />
         <br />
-        <textarea
-          name="description"
-          className="form-control"
-          rows="4"
-          placeholder="Añadir descripción"
-          value={save.description}
-          onChange={(e) => onChange(e)}
-        ></textarea>
+        <textarea name="description" className="form-control" rows="4" placeholder="Añadir descripción" value={save.description} onChange={(e) => onChange(e)} ></textarea>
         <br />
         <button className="btn btn-success float-end" disabled={!send} type="submit">
           <FontAwesomeIcon icon={faCirclePlus} />
@@ -75,23 +58,34 @@ const CreateSaveStarters = (props) => {
           {store.saved_starters.map((item, index) => {
             return (
               <li className="list-group-item" key={index}>
-                {!edit ? item.name : <form onSubmit={()=>actions.editStarter}>
-                <input type="text" className="form-control" rows="2" placeholder={item.name}></input>
-                <input type="text" className="form-control" rows="2" placeholder={item.description}></input>
-                <button className="btn btn-success float-end" type="submit">
-                <FontAwesomeIcon icon={faCirclePlus} />
-                </button>
-                </form>}
-                <button type="button" className="btn btn-outline-success" onClick={()=>setEdit(!edit)}>
+                {item.name} 
+                  <button type="button" className="btn btn-outline-success" onClick={()=>setModal(true)}>
                   <FontAwesomeIcon icon= {faPenToSquare} />
-                </button>
+                  </button>
                 <button type="button" className="btn btn-outline-success" onClick={()=> actions.removeStarter(item.id)}>
                   <FontAwesomeIcon icon={faTrashCan} />
                 </button>
-              </li>
-            );
+              </li>);
           })}
         </ul>
+        <Modal show={modal}>
+            <Modal.Header className="d-flex justify-content-center navbar-text">
+              ¿Desea realizar cambios a esta entrada?
+            </Modal.Header>
+            <Modal.Body>
+              <form className="d-flex flex-column align-items-center">
+                <label className="form-label py-1.5">Modificar nombre:</label>
+                <input></input>
+                <br/>
+                <label className="form-label py-1.5">Modificar descripción:</label>
+                <textarea></textarea>
+              </form>
+            </Modal.Body>
+            <Modal.Footer>
+              <button className="btn btn-outline-success">Guardar los cambios</button>
+              <button className="btn btn-outline-secondary" onClick={()=> setModal(false)} aria-label="Salir sin guardar">Cerrar</button>
+            </Modal.Footer>
+          </Modal>
       </div>
     </div>
   );
