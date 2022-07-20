@@ -36,6 +36,12 @@ const getState = ({ setStore, getActions, getStore }) => {
       saved_desserts: [{
         name: ""
       }],
+      saved_user: [{
+        id:"",
+        email:"",
+        roles_id:""
+      }]
+
     },
     actions: {
       addMeal: (data, send, ruta) => {
@@ -76,6 +82,16 @@ const getState = ({ setStore, getActions, getStore }) => {
           .then((data) => setStore({ saved_desserts: data }))
           .catch((error) => console.log(error));
       },
+      getUser: () => {
+        fetch('http://127.0.0.1:8080/get_user_roles')
+          .then((res) => res.json())
+          .then((data) => setStore({ saved_user: data }))
+          .catch((error) => console.log(error));
+      },
+
+
+
+
       /*  getAll: (ruta) => {
          fetch(ruta)
            .then((res) => res.json())
