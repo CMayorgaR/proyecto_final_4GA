@@ -15,10 +15,14 @@ const CreateSaveStarters = (props) => {
 
   const [send, setSend] = useState(false);
 
-  const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(false);
+
+  const [info, setInfo] = useState();
+
+
 
   useEffect(() => {
-    actions.getStarters();
+    actions.getStarters()
   }, []);
 
   const onChange = (e) => {
@@ -59,13 +63,13 @@ const CreateSaveStarters = (props) => {
             return (
               <li className="list-group-item" key={item.id}>
                 {item.name} 
-                  <button type="button" className="btn btn-outline-success" onClick={()=>setModal(true)}>
+                  <button type="button" className="btn btn-outline-success" onClick={()=>{setModal(true); setInfo(item.id)}}>
                     <FontAwesomeIcon icon= {faPenToSquare} />
                   </button>
                   <button type="button" className="btn btn-outline-success" onClick={()=> actions.removeStarter(item.id)}>
                     <FontAwesomeIcon icon={faTrashCan} />
                   </button>
-                <EditModal modal={modal} change={()=>setModal(false)} name={item.name} identification={item.id} />
+                <EditModal modal={modal} change={()=>setModal(false)} name={item.name} identification={info} />
               </li>);
            })}
         </ul> 
