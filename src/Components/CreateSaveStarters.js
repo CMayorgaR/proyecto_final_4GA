@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { Context } from "../Store/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus, faTrashCan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { Modal } from 'react-bootstrap'
+import EditModal from "./EditModal";
 
 
 const CreateSaveStarters = (props) => {
@@ -55,37 +55,20 @@ const CreateSaveStarters = (props) => {
       <div className="flex-column mt-5">
         <h1 className="fs-6 navbar-text text-center">Opciones guardadas</h1>
         <ul className="list-group text-start">
-          {store.saved_starters.map((item, index) => {
+          {store.saved_starters.map((item) => {
             return (
-              <li className="list-group-item" key={index}>
+              <li className="list-group-item" key={item.id}>
                 {item.name} 
                   <button type="button" className="btn btn-outline-success" onClick={()=>setModal(true)}>
-                  <FontAwesomeIcon icon= {faPenToSquare} />
+                    <FontAwesomeIcon icon= {faPenToSquare} />
                   </button>
-                <button type="button" className="btn btn-outline-success" onClick={()=> actions.removeStarter(item.id)}>
-                  <FontAwesomeIcon icon={faTrashCan} />
-                </button>
+                  <button type="button" className="btn btn-outline-success" onClick={()=> actions.removeStarter(item.id)}>
+                    <FontAwesomeIcon icon={faTrashCan} />
+                  </button>
+                <EditModal modal={modal} change={()=>setModal(false)} name={item.name} identification={item.id} />
               </li>);
-          })}
-        </ul>
-        <Modal show={modal}>
-            <Modal.Header className="d-flex justify-content-center navbar-text">
-              ¿Desea realizar cambios a esta entrada?
-            </Modal.Header>
-            <Modal.Body>
-              <form className="d-flex flex-column align-items-center">
-                <label className="form-label py-1.5">Modificar nombre:</label>
-                <input></input>
-                <br/>
-                <label className="form-label py-1.5">Modificar descripción:</label>
-                <textarea></textarea>
-              </form>
-            </Modal.Body>
-            <Modal.Footer>
-              <button className="btn btn-outline-success">Guardar los cambios</button>
-              <button className="btn btn-outline-secondary" onClick={()=> setModal(false)} aria-label="Salir sin guardar">Cerrar</button>
-            </Modal.Footer>
-          </Modal>
+           })}
+        </ul> 
       </div>
     </div>
   );
