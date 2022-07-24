@@ -1,16 +1,27 @@
 import { useContext, useState, useEffect } from "react";
 import { Context } from "../Store/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlus, faTrashCan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-
+import {
+  faCirclePlus,
+  faTrashCan,
+  faPenToSquare,
+} from "@fortawesome/free-solid-svg-icons";
+import EditModal from "./EditModal";
 
 const CreateSaveMains = (props) => {
   const { actions, store } = useContext(Context);
+
   const [save, setSave] = useState({
     name: "",
     description: "",
   });
+
   const [send, setSend] = useState(false);
+
+  const [modal, setModal] = useState(false);
+
+  const [info, setInfo] = useState();
+
   useEffect(() => {
     actions.getMains();
   }, []);
@@ -69,14 +80,37 @@ const CreateSaveMains = (props) => {
         <ul className="list-group text-start">
           {store.saved_mains.map((item, index) => {
             return (
-              <li className="list-group-item" key={index}>
-                {item.name}
-                <button type="button" className="btn btn-outline-success">
-                  <FontAwesomeIcon icon= {faPenToSquare} />
-                </button>
-                <button type="button" className="btn btn-outline-success" onClick={()=> actions.removeMain(item.id)}>
-                  <FontAwesomeIcon icon={faTrashCan} />
-                </button>
+              <li
+                className="list-group-item d-flex justify-content-between"
+                key={index}
+              >
+                <span className="d-flex align-items-center">{item.name}</span>
+                <span>
+                  <button
+                    type="button"
+                    className="btn btn-outline-success"
+                    onClick={() => {
+                      setModal(true);
+                      setInfo(item);
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faPenToSquare} />
+                  </button>
+                  &nbsp;
+                  <button
+                    type="button"
+                    className="btn btn-outline-success"
+                    onClick={() => actions.removeMain(item.id)}
+                  >
+                    <FontAwesomeIcon icon={faTrashCan} />
+                  </button>
+                </span>
+                <EditModal
+                  header="¿Desea realizar cambios a este Plato de Fondo?"
+                  modal={modal}
+                  change={() => setModal(false)}
+                  identification={info}
+                />
               </li>
             );
           })}
