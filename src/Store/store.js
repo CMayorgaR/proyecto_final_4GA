@@ -25,9 +25,7 @@ const getState = ({ setStore, getActions, getStore }) => {
         description: "",
       },
       saved_starters: [{
-        id:"",
         name: "",
-        description:""
       }],
       saved_mains: [{
         name: ""

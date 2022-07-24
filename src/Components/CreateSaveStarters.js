@@ -19,8 +19,6 @@ const CreateSaveStarters = (props) => {
 
   const [info, setInfo] = useState();
 
-
-
   useEffect(() => {
     actions.getStarters()
   }, []);
@@ -59,17 +57,20 @@ const CreateSaveStarters = (props) => {
       <div className="flex-column mt-5">
         <h1 className="fs-6 navbar-text text-center">Opciones guardadas</h1>
         <ul className="list-group text-start">
-          {store.saved_starters.map((item) => {
+          {store.saved_starters.map((item, index) => {
             return (
-              <li className="list-group-item" key={item.id}>
-                {item.name} 
-                  <button type="button" className="btn btn-outline-success" onClick={()=>{setModal(true); setInfo(item.id)}}>
+              <li className="list-group-item d-flex justify-content-between" key={index}>
+                <span className="d-flex align-items-center">{item.name}</span>
+                <span>
+                  <button type="button" className="btn btn-outline-success" onClick={()=>{setModal(true); setInfo(item)}}>
                     <FontAwesomeIcon icon= {faPenToSquare} />
                   </button>
+                  &nbsp;
                   <button type="button" className="btn btn-outline-success" onClick={()=> actions.removeStarter(item.id)}>
                     <FontAwesomeIcon icon={faTrashCan} />
                   </button>
-                <EditModal modal={modal} change={()=>setModal(false)} name={item.name} identification={info} />
+                </span>
+                  <EditModal header="¿Desea realizar cambios a esta Entrada?" modal={modal} change={()=>setModal(false)} identification={info} /> 
               </li>);
            })}
         </ul> 
