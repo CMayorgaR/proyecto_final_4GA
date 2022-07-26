@@ -1,11 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { Context } from "../Store/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCirclePlus,
-  faTrashCan,
-  faPenToSquare,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCirclePlus, faTrashCan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import EditModal from "./EditModal";
 
 const CreateSaveSalads = (props) => {
@@ -109,6 +105,7 @@ const CreateSaveSalads = (props) => {
                   modal={modal}
                   change={() => setModal(false)}
                   identification={info}
+                  call={actions.editSalad}
                 />
               </li>
             );

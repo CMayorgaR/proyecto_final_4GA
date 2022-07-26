@@ -1,48 +1,53 @@
 import { Modal } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 const EditModal = (props) => {
+  const [edit, setEdit] = useState({
+    name: "",
+    description: "",
+  });
 
+  const handleChange = (e) => {
+    setEdit({ ...edit, [e.target.name]: e.target.value });
+  };
 
-const [edit, setEdit] = useState(
-    {
-        name: props.identification?.name,
-        description: props.identification?.description
-    }
-);
-
-
-const handleChange = (e) => {       
-setEdit({ ...edit, [e.target.name]: e.target.value });
-console.log(handleChange())};
+  useEffect(() => {
+    setEdit({
+      name: "" || props.identification?.name,
+      description: "" || props.identification?.description,
+    });
+  }, [props]); //cada vez que el props cambie se ejecuta el useEffect
 
   return (
     <Modal show={props.modal}>
       <Modal.Header className="d-flex justify-content-between navbar-text">
         {props.header}
         <button className="btn btn-outline-danger" onClick={props.change}>
-          <FontAwesomeIcon icon={faCircleXmark} /> {props.identification?.id}
+          <FontAwesomeIcon icon={faCircleXmark} />
         </button>
       </Modal.Header>
       <Modal.Body>
         <form
           className="d-flex flex-column align-items-center"
-          onSubmit={props.call}
+          onSubmit={(e) => {
+            props.call(edit, props.identification?.id, e);
+            props.change(); //paréntesis para que esta propiedad se ejecute aquí.
+          }}
         >
           <label className="form-label py-1.5">Modificar nombre:</label>
           <input
             type="text"
-            name="first"
-            value={props.identification?.name}
+            name="name"
+            value={edit.name}
             onChange={(e) => handleChange(e)}
           ></input>
           <br />
           <label className="form-label py-1.5">Modificar descripción:</label>
           <textarea
-            name="second"
-            value={props.identification?.description}
+            name="description"
+            value={edit.description}
             onChange={(e) => handleChange(e)}
           ></textarea>
           <br />

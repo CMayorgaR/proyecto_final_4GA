@@ -170,7 +170,8 @@ const getState = ({ setStore, getActions, getStore }) => {
         .then((data) => actions.getDesserts())
         .catch(error => {console.log(error)});
       },
-      editStarter: (data, id) => {
+      editStarter: (data, id, e) => {
+        e.preventDefault();
         const actions = getActions();
         fetch('http://127.0.0.1:5000/starter/' + id, {
           method: "PUT",
@@ -180,6 +181,45 @@ const getState = ({ setStore, getActions, getStore }) => {
           body: JSON.stringify(data)
         }).then((res) => { return res.json() })
           .then((data) => actions.getStarters())
+          .catch((error) => console.log(error));
+      },
+      editMain: (data, id, e) => {
+        e.preventDefault();
+        const actions = getActions();
+        fetch('http://127.0.0.1:5000/main/' + id, {
+          method: "PUT",
+          headers: {
+            'Content-Type': 'application/Json'
+          },
+          body: JSON.stringify(data)
+        }).then((res) => { return res.json() })
+          .then((data) => actions.getMains())
+          .catch((error) => console.log(error));
+      },
+      editSalad: (data, id, e) => {
+        e.preventDefault();
+        const actions = getActions();
+        fetch('http://127.0.0.1:5000/salad/' + id, {
+          method: "PUT",
+          headers: {
+            'Content-Type': 'application/Json'
+          },
+          body: JSON.stringify(data)
+        }).then((res) => { return res.json() })
+          .then((data) => actions.getSalads())
+          .catch((error) => console.log(error));
+      },
+      editDessert: (data, id, e) => {
+        e.preventDefault();
+        const actions = getActions();
+        fetch('http://127.0.0.1:5000/dessert/' + id, {
+          method: "PUT",
+          headers: {
+            'Content-Type': 'application/Json'
+          },
+          body: JSON.stringify(data)
+        }).then((res) => { return res.json() })
+          .then((data) => actions.getDesserts())
           .catch((error) => console.log(error));
       },
 
