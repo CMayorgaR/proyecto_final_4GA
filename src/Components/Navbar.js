@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBellConcierge } from "@fortawesome/free-solid-svg-icons";
+import { faBellConcierge, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
   return <>
@@ -8,9 +9,9 @@ const Navbar = (props) => {
       <a className="navbar-brand text-success navbar-title">MM <FontAwesomeIcon icon={faBellConcierge} style={{fontSize:"30px", color:"green"}}/></a>
       <span className="navbar-text">{props.title}</span>
       <span className="d-flex">
-        <button className="btn btn-outline-success navbar-text" href="#">
-          Regresar
-        </button>
+        <Link to={props.link} className="btn btn-outline-success navbar-text">
+        <FontAwesomeIcon icon={faArrowRightFromBracket} />
+        </Link>  
       </span>
     </div>
   </nav>
