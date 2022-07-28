@@ -7,6 +7,7 @@ import Login from './Views/Login';
 import ResetPass from './Views/ResetPass';
 import CreateProfile from './Views/CreateProfile';
 import NewMenu from './Views/NewMenu';
+import SelectedMenu from './Views/SelectedMenu';
 import  Roles from './Views/Roles';
 
 
@@ -20,7 +21,8 @@ function App(){
         <Route path='/' element={<Login />} />
         <Route path='/reset' element={<ResetPass />} />
         <Route path='/createProfile' element={<CreateProfile />} />
-        <Route path="/new_menu" element={<NewMenu />} />
+        <Route path="/newMenu" element={<NewMenu />} />
+        <Route path="/userSelection" element={<SelectedMenu />} />
         <Route path="/roles" element={<Roles />} />
       </Routes>
     </BrowserRouter>

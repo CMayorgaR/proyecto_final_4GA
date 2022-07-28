@@ -30,6 +30,7 @@ const CreateSaveDesserts = (props) => {
       setSend(false);
     }
   };
+  
   const onSubmit = (e) => {
     e.preventDefault();
     actions.addDesserts(save, send, props.ruta);
@@ -39,6 +40,8 @@ const CreateSaveDesserts = (props) => {
     });
     setSend(false);
   };
+
+  console.log(onSubmit)
 
   return (
     <div className="flex-column forms col">
