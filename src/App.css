@@ -7,9 +7,60 @@
     font-style: normal;
     font-weight: 500;
     font-size: 40px;
-    line-height: 36px;
+    line-height: 50px;
     color: #afcc88;
 }
+
+.pass{
+  margin-left: 20%;
+  margin-top:15% ;
+   
+}
+
+.buton{
+  width: 25%;
+  margin-left: 35%;
+  background-color: #1E4A13;
+  border-radius: 20px;
+}
+
+.passone{
+  width: 40%;
+  margin-left: 30%;
+}
+
+.feed{
+  margin-left: 30%;
+  margin-top:15% ;
+}
+
+.one{
+  width: 40%;
+  margin-left: 30%;
+  
+  
+}
+.tre{
+  width: 40%;
+  margin-left: 30%;
+}
+
+.true{
+  width: 40%;
+  margin-left: 30%;
+}
+
+.for{
+  width: 40%;
+  margin-left: 30%;
+}
+
+.for{
+  width: 40%;
+  margin-left: 30%;
+}
+
+
 
 .navbar-text {
     font-style: normal;
@@ -70,3 +121,18 @@ form {
 .CreateProfile{
          padding-left: 30px;
 }
+
+.imagenOne{
+  width: 70%;
+  padding-left: 10% ;
+  border-radius: 30px;
+}
+
+.coll{
+  padding-left: 10% ;
+}
+
+
+
+
+
