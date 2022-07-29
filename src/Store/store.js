@@ -1,4 +1,5 @@
-const APIusers = 'http://localhost:8080/create_user'
+
+const APIusers = 'http://localhost:8080/'
 
 const getState = ({ setStore, getActions, getStore }) => {
 
@@ -7,7 +8,8 @@ const getState = ({ setStore, getActions, getStore }) => {
             user: {
                 full_name: '',
                 email: '',
-                password: ''
+                password: '',
+                role_id:''
             },
             starter: {
                 name: "",
@@ -40,26 +42,61 @@ const getState = ({ setStore, getActions, getStore }) => {
         },
 
         actions: {
-            // handleChangeLogin: (evento) => { //recoje info del formulario
-            //     const {user} = getStore(); 
-            //     setStore({
-            //         user:{ //user es un objeto
-            //             ...user, //mantiene todas las propiedades de user.
-            //             [evento.target.name]:evento.target.value // guardamos las propiedades que le agregamos en el imput del formulario
-            //         }
-            //     })
-            // },
-            // handleSubmitLogin: (evento) =>{ //
-            //     evento.preventDefault(); //evitamos que la pag vuelva a cargar.
-            //     const {user} = getStore() //traeme el usuario del store
-            //     fetch(APIusers,{
-            //         method:"POST",
-            //         headers: {
-            //             "Content-Type": "application/json" //el lenguaje de comunicacion es json
-            //         },
-            //         body:JSON.stringify(user)
-            //     }).then(res => res.json()).then(data => console.log(data))//convertimos la respuesta de json a js y luego le hacemos un consolelog
-            // },
+            handleChangeLogin: (evento) => { //recoje info del formulario
+                const { user } = getStore();
+                setStore({
+                    user: { //user es un objeto
+                        ...user, //mantiene todas las propiedades de user.
+                        [evento.target.name]: evento.target.value // guardamos las propiedades que le agregamos en el imput del formulario
+                    }
+                })
+            },
+            handleSubmitLogin: (evento, navigate) => { //
+                evento.preventDefault();
+                localStorage.clear();
+                const { user } = getStore() //traeme el usuario del store
+                fetch(APIusers + 'login', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(user)
+                }).then(res => res.json()).then(data => {
+                    console.log(data)
+                    if (data.access_token) {
+                        localStorage.setItem('token', data.access_token)
+                        localStorage.setItem('role_id', data.role_id)
+                        navigate("/calendar")
+                    } else {
+                        localStorage.clear()
+                    }
+                })
+                setStore({
+                    user: {
+                        full_name: '',
+                        email: '',
+                        password: ''
+                    }
+                })
+                console.log(user)
+            },
+
+            test: (data, send, ruta) => {
+                let token = localStorage.getItem('token')
+                console.log(token)
+                fetch(APIusers + 'me', {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                })
+                    .then((res) => res.json())
+                    .then((data) => console.log(data))
+                    .catch((error) => console.log(error));
+
+            },
+
             handleChangeRegister: (evento) => { //recoje info del formulario
                 const { user } = getStore();
                 console.log(evento.target.name)
@@ -70,16 +107,16 @@ const getState = ({ setStore, getActions, getStore }) => {
                     }
                 })
             },
-            handleSubmitRegister: (evento) => { //
+            handleSubmitRegister: (evento, navigate) => { //
                 evento.preventDefault(); //evitamos que la pag vuelva a cargar.
                 const { user } = getStore() //traeme el usuario del store
-                fetch(APIusers, {
+                fetch(APIusers + 'create_user', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json" //el lenguaje de comunicacion es json
                     },
                     body: JSON.stringify(user)
-                }).then(res => res.json()).then(data => console.log(data))//convertimos la respuesta de json a js y luego le hacemos un consolelog
+                }).then(res => res.json()).then(data => console.log(data));
             },
 
             addMeal: (data, send, ruta) => {
