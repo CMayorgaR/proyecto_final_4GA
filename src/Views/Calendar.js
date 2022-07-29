@@ -4,7 +4,7 @@ import Navbar from "../Components/Navbar";
 const Calendar = () => {
     return (
         <>
-            <Navbar title="Profile" />
+            <Navbar title="Seleccione una fecha para comenzar:" link="/"/>
             <CalendarMenu />
         </>
     )
