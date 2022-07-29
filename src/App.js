@@ -7,9 +7,9 @@ import Login from './Views/Login';
 import ResetPass from './Views/ResetPass';
 import CreateProfile from './Views/CreateProfile';
 import NewMenu from './Views/NewMenu';
-import  Roles from './Views/Roles';
+import Roles from './Views/Roles';
 import Delivery from './Views/Delivery';
-import Change from './Views/Change'
+import Change from './Views/Change';
 import Feedback from './Views/Feedbackk';
 
 
@@ -18,7 +18,7 @@ function App(){
     <BrowserRouter>
       <Routes>
         <Route path="/calendar" element={<Calendar />} />
-        <Route path="/calendar/:date" element={<Calendar/>} />
+        <Route path="/calendar/:date" element={<Calendar />} />
         <Route path='/register' element={<Register />} />
         <Route path='/' element={<Login />} />
         <Route path='/reset' element={<ResetPass />} />
