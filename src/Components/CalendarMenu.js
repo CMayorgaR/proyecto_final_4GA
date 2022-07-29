@@ -18,7 +18,7 @@ function CalendarMenu() {
 
         console.log("nuevafecha", dateString);
         //esta funcion es para cuando presiono una fecha x en el calendario me retornara a new_menu
-         history(`/new_menu/${dateString}`); //string yvariable
+         history(`/newMenu/${dateString}`); //string yvariable
     }
     
     console.log(date);
