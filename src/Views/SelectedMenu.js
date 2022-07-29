@@ -8,7 +8,7 @@ import UserSelectionDessert from "../Components/UserSelectionDessert";
 
 const SelectedMenu = () => {
     return <>
-        <Navbar title="Seleccione su menú" link="/Calendar" />
+        <Navbar title="Seleccione su menú:" link="/Calendar" />
         <div className="view-color container-fluid">
         <div className="justify-content-between row">
         <UserSelectionStarter />
