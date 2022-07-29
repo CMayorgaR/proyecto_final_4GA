@@ -1,0 +1,21 @@
+textarea {
+
+    border-radius: 40px;
+    text-align: justify;
+    right: auto;
+}
+
+.boton {
+    background-color: forestgreen;
+    border-radius: 80px;
+    height: 30%;
+}
+
+
+.card-img-top {
+    margin-right: 40%;
+    left: 30%;
+    width: 35%;
+}
+
+
