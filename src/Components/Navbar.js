@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBellConcierge, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { faBellConcierge, faArrowRightFromBracket  } from "@fortawesome/free-solid-svg-icons";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = (props) => {
+  let navigate = useNavigate();
   return <>
   <nav className="navbar">
     <div className="container-fluid">
@@ -18,5 +19,8 @@ const Navbar = (props) => {
   </>
 };
 
+{/* <button onClick={()=>{navigate('/'); localStorage.clear()}} className="btn btn-outline-success navbar-text" href="#">
+Log out
+</button> */}
 
 export default Navbar;
