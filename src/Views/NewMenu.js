@@ -4,7 +4,7 @@ import CreateMenu from "../Components/CreateMenu";
 const NewMenu =() => {
     return (
     <> 
-    <Navbar title= "Crear menú" /> 
+    <Navbar title= "Crear menú" link="/Calendar"/> 
     <CreateMenu />
     </>
     )

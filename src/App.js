@@ -10,6 +10,9 @@ import NewMenu from './Views/NewMenu';
 import Roles from './Views/Roles';
 import PrivateRoute from './Components/PrivateRoute';
 import SuperPrivateRoute from './Components/SuperPrivateRoute';
+import Delivery from './Views/Delivery';
+import Change from './Views/Change'
+import Feedback from './Views/Feedbackk';
 
 
 function App() {
@@ -23,8 +26,13 @@ function App() {
         <Route path='/' element={<Login />} />
         <Route path='/reset' element={<ResetPass />} />
         <Route path='/createProfile' element={<CreateProfile />} />
-        <Route path="/newMenu" element={<SuperPrivateRoute><NewMenu /></SuperPrivateRoute>} />
+        <Route path="/newMenu/:date" element={<SuperPrivateRoute><NewMenu /></SuperPrivateRoute>} />
         <Route path="/roles" element={<Roles />} />
+        <Route path="/delivery" element={<Delivery />} />
+        <Route path="/contrasena" element={<Change />} />
+        <Route path="/Evaluacion" element={<Feedback />} />
+
+
       </Routes>
     </BrowserRouter>
 
