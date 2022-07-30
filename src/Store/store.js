@@ -179,32 +179,32 @@ const getState = ({ setStore, getActions, getStore }) => {
                 }
             },
             getStarters: () => {
-                fetch('http://127.0.0.1:5000/starter')
+                fetch(APIusers+'starter')
                     .then((res) => res.json())
                     .then((data) => { setStore({ saved_starters: data }) }) //if data is true fetch GET setear la variable de la lista store.saved_starters
                     .catch((error) => console.log(error));
             },
             getMains: () => {
-                fetch('http://127.0.0.1:5000/main')
+                fetch(APIusers+'main')
                     .then((res) => res.json())
                     .then((data) => setStore({ saved_mains: data }))
                     .catch((error) => console.log(error));
             },
             getSalads: () => {
-                fetch('http://127.0.0.1:5000/salad')
+                fetch(APIusers+'salad')
                     .then((res) => res.json())
                     .then((data) => setStore({ saved_salads: data }))
                     .catch((error) => console.log(error));
             },
             getDesserts: () => {
-                fetch('http://127.0.0.1:5000/dessert')
+                fetch(APIusers+'dessert')
                     .then((res) => res.json())
                     .then((data) => setStore({ saved_desserts: data }))
                     .catch((error) => console.log(error));
             },
             removeStarter: (id) => {
                 const actions = getActions();
-                fetch('http://127.0.0.1:5000/starter/' + id, {
+                fetch(APIusers+ 'starter/' + id, {
                     method: 'DELETE',
                     headers: {
                         "Content-Type": "application/json",
@@ -216,7 +216,7 @@ const getState = ({ setStore, getActions, getStore }) => {
             },
             removeMain: (id) => {
                 const actions = getActions();
-                fetch('http://127.0.0.1:5000/main/' + id, {
+                fetch(APIusers+ 'main/' + id, {
                     method: 'DELETE',
                     headers: {
                         "Content-Type": "application/json",
@@ -228,7 +228,7 @@ const getState = ({ setStore, getActions, getStore }) => {
             },
             removeSalad: (id) => {
                 const actions = getActions();
-                fetch('http://127.0.0.1:5000/salad/' + id, {
+                fetch(APIusers + 'salad/' + id, {
                     method: 'DELETE',
                     headers: {
                         "Content-Type": "application/json",
@@ -240,7 +240,7 @@ const getState = ({ setStore, getActions, getStore }) => {
             },
             removeDessert: (id) => {
                 const actions = getActions();
-                fetch('http://127.0.0.1:5000/dessert/' + id, {
+                fetch(APIusers + 'dessert/' + id, {
                     method: 'DELETE',
                     headers: {
                         "Content-Type": "application/json",
@@ -253,7 +253,7 @@ const getState = ({ setStore, getActions, getStore }) => {
             editStarter: (data, id, e) => {
                 e.preventDefault();
                 const actions = getActions();
-                fetch('http://127.0.0.1:5000/starter/' + id, {
+                fetch(APIusers+ 'starter/' + id, {
                     method: "PUT",
                     headers: {
                         'Content-Type': 'application/Json'
@@ -266,7 +266,7 @@ const getState = ({ setStore, getActions, getStore }) => {
             editMain: (data, id, e) => {
                 e.preventDefault();
                 const actions = getActions();
-                fetch('http://127.0.0.1:5000/main/' + id, {
+                fetch(APIusers + 'main/' + id, {
                     method: "PUT",
                     headers: {
                         'Content-Type': 'application/Json'
@@ -279,7 +279,7 @@ const getState = ({ setStore, getActions, getStore }) => {
             editSalad: (data, id, e) => {
                 e.preventDefault();
                 const actions = getActions();
-                fetch('http://127.0.0.1:5000/salad/' + id, {
+                fetch(APIusers + 'salad/' + id, {
                     method: "PUT",
                     headers: {
                         'Content-Type': 'application/Json'
@@ -292,7 +292,7 @@ const getState = ({ setStore, getActions, getStore }) => {
             editDessert: (data, id, e) => {
                 e.preventDefault();
                 const actions = getActions();
-                fetch('http://127.0.0.1:5000/dessert/' + id, {
+                fetch(APIusers+ 'dessert/' + id, {
                     method: "PUT",
                     headers: {
                         'Content-Type': 'application/Json'
