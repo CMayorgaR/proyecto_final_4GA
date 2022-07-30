@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Calendar from 'react-calendar';
+import { Context } from "../Store/appContext";
 import '../Styles/calendarMenu.css';
 import { useNavigate } from "react-router-dom";
 import 'react-calendar/dist/Calendar.css';
@@ -7,6 +8,7 @@ import 'react-calendar/dist/Calendar.css';
 
 function CalendarMenu() {
     const [date, setDate] = useState(new Date());
+    const { actions } = useContext(Context);
     let history =  useNavigate(); 
     function resend(data) {
         const day = data.getDate();
@@ -18,13 +20,14 @@ function CalendarMenu() {
 
         console.log("nuevafecha", dateString);
         //esta funcion es para cuando presiono una fecha x en el calendario me retornara a new_menu
-         history(`/newMenu/${dateString}`); //string yvariable
+        actions.saveDate(`${dateString}`);
+         history(`/newMenu/${dateString}`); //string variable
     }
     
     console.log(date);
     return (
         <>
-        <div className="vista-color vista-calendar">
+        <div className="vista-color vista-calendar d-flex justify-content-center">
             <Calendar 
                 onClick={"date"} 
                 onChange={(e)=>resend(e)} 

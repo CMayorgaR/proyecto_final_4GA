@@ -32,7 +32,7 @@ const CreateSaveMains = (props) => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    actions.addMains(save, send, props.ruta);
+    actions.addMains({...save, date: props.initialDate}, send, props.ruta);
     setSave({
       name: "",
       description: "",

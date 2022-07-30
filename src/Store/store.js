@@ -1,125 +1,147 @@
-
-const APIusers = 'http://localhost:8080/'
+const APIusers = "http://localhost:8080/";
 
 const getState = ({ setStore, getActions, getStore }) => {
     return {
         store: {
             user: {
-                full_name: '',
-                email: '',
-                password: '',
-                role_id: ''
+                full_name: "",
+                email: "",
+                password: "",
+                role_id: "",
             },
             starter: {
                 name: "",
                 description: "",
+                date: "",
             },
             main_dish: {
                 name: "",
                 description: "",
+                date: "",
             },
             salad: {
                 name: "",
                 description: "",
+                date: "",
             },
             dessert: {
                 name: "",
                 description: "",
+                date: "",
             },
-            saved_starters: [{
-                name: ""
-            }],
-            saved_mains: [{
-                name: ""
-            }],
-            saved_salads: [{
-                name: ""
-            }],
-            saved_desserts: [{
-                name: ""
-            }],
+            saved_starters: [
+                {
+                    name: "",
+                    date: "",
+                },
+            ],
+            saved_mains: [
+                {
+                    name: "",
+                    date: "",
+                },
+            ],
+            saved_salads: [
+                {
+                    name: "",
+                    date: "",
+                },
+            ],
+            saved_desserts: [
+                {
+                    name: "",
+                    date: "",
+                },
+            ],
+            saved_date: "",
         },
 
         actions: {
-            handleChangeLogin: (evento) => { //recoje info del formulario
+            handleChangeLogin: (evento) => {
+                //recoje info del formulario
                 const { user } = getStore();
                 setStore({
-                    user: { //user es un objeto
+                    user: {
+                        //user es un objeto
                         ...user, //mantiene todas las propiedades de user.
-                        [evento.target.name]: evento.target.value // guardamos las propiedades que le agregamos en el imput del formulario
-                    }
-                })
+                        [evento.target.name]: evento.target.value, // guardamos las propiedades que le agregamos en el imput del formulario
+                    },
+                });
             },
-            handleSubmitLogin: (evento, navigate) => { //
+            handleSubmitLogin: (evento, navigate) => {
                 evento.preventDefault();
                 localStorage.clear();
-                const { user } = getStore() //traeme el usuario del store
-                fetch(APIusers + 'login', {
+                const { user } = getStore(); //traeme el usuario del store
+                fetch(APIusers + "login", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(user)
-                }).then(res => res.json()).then(data => {
-                    console.log(data)
-                    if (data.access_token) {
-                        localStorage.setItem('token', data.access_token)
-                        localStorage.setItem('role_id', data.role_id)
-                        navigate("/calendar")
-                    } else {
-                        localStorage.clear()
-                    }
+                    body: JSON.stringify(user),
                 })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        console.log(data);
+                        if (data.access_token) {
+                            localStorage.setItem("token", data.access_token);
+                            localStorage.setItem("role_id", data.role_id);
+                            navigate("/calendar");
+                        } else {
+                            localStorage.clear();
+                        }
+                    });
                 setStore({
                     user: {
-                        full_name: '',
-                        email: '',
-                        password: ''
-                    }
-                })
-                console.log(user)
+                        full_name: "",
+                        email: "",
+                        password: "",
+                    },
+                });
             },
 
             test: (data, send, ruta) => {
-                let token = localStorage.getItem('token')
-                console.log(token)
-                fetch(APIusers + 'me', {
+                let token = localStorage.getItem("token");
+                console.log(token);
+                fetch(APIusers + "me", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
+                        Authorization: `Bearer ${token}`,
                     },
                 })
                     .then((res) => res.json())
                     .then((data) => console.log(data))
                     .catch((error) => console.log(error));
-
             },
 
-            handleChangeRegister: (evento) => { //recoje info del formulario
+            handleChangeRegister: (evento) => {
+                //recoje info del formulario
                 const { user } = getStore();
-                console.log(evento.target.name)
+                console.log(evento.target.name);
                 setStore({
-                    user: { //user es un objeto
+                    user: {
+                        //user es un objeto
                         ...user, //mantiene todas las propiedades de user.
-                        [evento.target.name]: evento.target.value // guardamos las propiedades que le agregamos en el imput del formulario
-                    }
-                })
+                        [evento.target.name]: evento.target.value, // guardamos las propiedades que le agregamos en el imput del formulario
+                    },
+                });
             },
-            handleSubmitRegister: (evento, navigate) => { //
+            handleSubmitRegister: (evento) => {
+                const actions = getActions();
                 evento.preventDefault(); //evitamos que la pag vuelva a cargar.
-                const { user } = getStore() //traeme el usuario del store
-                fetch(APIusers + 'create_user', {
+                const { user } = getStore(); //traeme el usuario del store
+                fetch(APIusers + "create_user", {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json" //el lenguaje de comunicacion es json
+                        "Content-Type": "application/json", //el lenguaje de comunicacion es json
                     },
-                    body: JSON.stringify(user)
-                }).then(res => res.json()).then(data => console.log(data));
-
+                    body: JSON.stringify(user),
+                })
+                    .then((res) => res.json())
+                    .then((data) => console.log(data));
             },
             addStarters: (data, send, ruta) => {
-                const actions = getActions()
+                const actions = getActions();
                 if (send == true) {
                     fetch(ruta, {
                         method: "POST",
@@ -134,7 +156,7 @@ const getState = ({ setStore, getActions, getStore }) => {
                 }
             },
             addMains: (data, send, ruta) => {
-                const actions = getActions()
+                const actions = getActions();
                 if (send == true) {
                     fetch(ruta, {
                         method: "POST",
@@ -149,7 +171,7 @@ const getState = ({ setStore, getActions, getStore }) => {
                 }
             },
             addSalads: (data, send, ruta) => {
-                const actions = getActions()
+                const actions = getActions();
                 if (send == true) {
                     fetch(ruta, {
                         method: "POST",
@@ -164,7 +186,7 @@ const getState = ({ setStore, getActions, getStore }) => {
                 }
             },
             addDesserts: (data, send, ruta) => {
-                const actions = getActions()
+                const actions = getActions();
                 if (send == true) {
                     fetch(ruta, {
                         method: "POST",
@@ -179,130 +201,155 @@ const getState = ({ setStore, getActions, getStore }) => {
                 }
             },
             getStarters: () => {
-                fetch('http://127.0.0.1:5000/starter')
+                fetch(APIusers + "starter")
                     .then((res) => res.json())
-                    .then((data) => { setStore({ saved_starters: data }) }) //if data is true fetch GET setear la variable de la lista store.saved_starters
+                    .then((data) => {
+                        setStore({ saved_starters: data });
+                    }) //if data is true fetch GET setear la variable de la lista store.saved_starters
                     .catch((error) => console.log(error));
             },
             getMains: () => {
-                fetch('http://127.0.0.1:5000/main')
+                fetch(APIusers + "main")
                     .then((res) => res.json())
                     .then((data) => setStore({ saved_mains: data }))
                     .catch((error) => console.log(error));
             },
             getSalads: () => {
-                fetch('http://127.0.0.1:5000/salad')
+                fetch(APIusers + "salad")
                     .then((res) => res.json())
                     .then((data) => setStore({ saved_salads: data }))
                     .catch((error) => console.log(error));
             },
             getDesserts: () => {
-                fetch('http://127.0.0.1:5000/dessert')
+                fetch(APIusers + "dessert")
                     .then((res) => res.json())
                     .then((data) => setStore({ saved_desserts: data }))
                     .catch((error) => console.log(error));
             },
             removeStarter: (id) => {
                 const actions = getActions();
-                fetch('http://127.0.0.1:5000/starter/' + id, {
-                    method: 'DELETE',
+                fetch(APIusers + "starter/" + id, {
+                    method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",
                     },
                 })
                     .then((res) => res.json())
                     .then((data) => actions.getStarters())
-                    .catch(error => { console.log(error) });
+                    .catch((error) => {
+                        console.log(error);
+                    });
             },
             removeMain: (id) => {
                 const actions = getActions();
-                fetch('http://127.0.0.1:5000/main/' + id, {
-                    method: 'DELETE',
+                fetch(APIusers + "main/" + id, {
+                    method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",
                     },
                 })
                     .then((res) => res.json())
                     .then((data) => actions.getMains())
-                    .catch(error => { console.log(error) });
+                    .catch((error) => {
+                        console.log(error);
+                    });
             },
             removeSalad: (id) => {
                 const actions = getActions();
-                fetch('http://127.0.0.1:5000/salad/' + id, {
-                    method: 'DELETE',
+                fetch(APIusers + "salad/" + id, {
+                    method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",
                     },
                 })
                     .then((res) => res.json())
                     .then((data) => actions.getSalads())
-                    .catch(error => { console.log(error) });
+                    .catch((error) => {
+                        console.log(error);
+                    });
             },
             removeDessert: (id) => {
                 const actions = getActions();
-                fetch('http://127.0.0.1:5000/dessert/' + id, {
-                    method: 'DELETE',
+                fetch(APIusers + "dessert/" + id, {
+                    method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",
                     },
                 })
                     .then((res) => res.json())
                     .then((data) => actions.getDesserts())
-                    .catch(error => { console.log(error) });
+                    .catch((error) => {
+                        console.log(error);
+                    });
             },
             editStarter: (data, id, e) => {
                 e.preventDefault();
                 const actions = getActions();
-                fetch('http://127.0.0.1:5000/starter/' + id, {
+                fetch(APIusers + "starter/" + id, {
                     method: "PUT",
                     headers: {
-                        'Content-Type': 'application/Json'
+                        "Content-Type": "application/Json",
                     },
-                    body: JSON.stringify(data)
-                }).then((res) => { return res.json() })
+                    body: JSON.stringify(data),
+                })
+                    .then((res) => {
+                        return res.json();
+                    })
                     .then((data) => actions.getStarters())
                     .catch((error) => console.log(error));
             },
             editMain: (data, id, e) => {
                 e.preventDefault();
                 const actions = getActions();
-                fetch('http://127.0.0.1:5000/main/' + id, {
+                fetch(APIusers + "main/" + id, {
                     method: "PUT",
                     headers: {
-                        'Content-Type': 'application/Json'
+                        "Content-Type": "application/Json",
                     },
-                    body: JSON.stringify(data)
-                }).then((res) => { return res.json() })
+                    body: JSON.stringify(data),
+                })
+                    .then((res) => {
+                        return res.json();
+                    })
                     .then((data) => actions.getMains())
                     .catch((error) => console.log(error));
             },
             editSalad: (data, id, e) => {
                 e.preventDefault();
                 const actions = getActions();
-                fetch('http://127.0.0.1:5000/salad/' + id, {
+                fetch(APIusers + "salad/" + id, {
                     method: "PUT",
                     headers: {
-                        'Content-Type': 'application/Json'
+                        "Content-Type": "application/Json",
                     },
-                    body: JSON.stringify(data)
-                }).then((res) => { return res.json() })
+                    body: JSON.stringify(data),
+                })
+                    .then((res) => {
+                        return res.json();
+                    })
                     .then((data) => actions.getSalads())
                     .catch((error) => console.log(error));
             },
             editDessert: (data, id, e) => {
                 e.preventDefault();
                 const actions = getActions();
-                fetch('http://127.0.0.1:5000/dessert/' + id, {
+                fetch(APIusers + "dessert/" + id, {
                     method: "PUT",
                     headers: {
-                        'Content-Type': 'application/Json'
+                        "Content-Type": "application/Json",
                     },
-                    body: JSON.stringify(data)
-                }).then((res) => { return res.json() })
+                    body: JSON.stringify(data),
+                })
+                    .then((res) => {
+                        return res.json();
+                    })
                     .then((data) => actions.getDesserts())
                     .catch((error) => console.log(error));
             },
-        }
-    }
-}
+            saveDate: (date) => {
+                setStore({ saved_date: date });
+            },
+        },
+    };
+};
 export default getState;

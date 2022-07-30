@@ -32,7 +32,7 @@ const CreateSaveDesserts = (props) => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    actions.addDesserts(save, send, props.ruta);
+    actions.addDesserts({...save, date: props.initialDate}, send, props.ruta);
     setSave({
       name: "",
       description: "",

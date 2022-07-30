@@ -33,7 +33,7 @@ const CreateSaveStarters = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    actions.addStarters(save, send, props.ruta);
+    actions.addStarters({...save, date: props.initialDate}, send, props.ruta);
     setSave({
       name: "",
       description: "",

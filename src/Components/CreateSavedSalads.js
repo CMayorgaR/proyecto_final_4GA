@@ -31,7 +31,7 @@ const CreateSaveSalads = (props) => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    actions.addSalads(save, send, props.ruta);
+    actions.addSalads({...save, date: props.initialDate}, send, props.ruta);
     setSave({
       name: "",
       description: "",
