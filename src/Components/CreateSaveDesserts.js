@@ -10,6 +10,7 @@ const CreateSaveDesserts = (props) => {
   const [save, setSave] = useState({
     name: "",
     description: "",
+    date:""
   });
   
   const [send, setSend] = useState(false);
@@ -36,9 +37,16 @@ const CreateSaveDesserts = (props) => {
     setSave({
       name: "",
       description: "",
+      date:""
     });
     setSend(false);
   };
+
+  let savedDesserts = store.saved_desserts;
+  let today = store.saved_date;
+  let dessertsOfToday = savedDesserts.filter(function (dessert) {
+    return dessert.date == today;
+  })
 
   return (
     <div className="flex-column forms col">
@@ -74,7 +82,7 @@ const CreateSaveDesserts = (props) => {
       <div className="flex-column mt-5">
         <h1 className="fs-6 navbar-text text-center">Opciones guardadas</h1>
         <ul className="list-group text-start">
-          {store.saved_desserts.map((item, index) => {
+          {dessertsOfToday.map((item, index) => {
             return (
               <li
                 className="list-group-item d-flex justify-content-between"

@@ -10,6 +10,7 @@ const CreateSaveSalads = (props) => {
   const [save, setSave] = useState({
     name: "",
     description: "",
+    date:""
   });
   const [send, setSend] = useState(false);
   
@@ -35,9 +36,16 @@ const CreateSaveSalads = (props) => {
     setSave({
       name: "",
       description: "",
+      date:""
     });
     setSend(false);
   };
+
+  let savedSalads = store.saved_salads;
+  let today = store.saved_date;
+  let saladsOfToday = savedSalads.filter(function (salad) {
+    return salad.date == today;
+  })
 
   return (
     <div className="flex-column mb-3 forms col">
@@ -73,7 +81,7 @@ const CreateSaveSalads = (props) => {
       <div className="flex-column mt-5">
         <h1 className="fs-6 navbar-text text-center">Opciones guardadas</h1>
         <ul className="list-group text-start">
-          {store.saved_salads.map((item, index) => {
+          {saladsOfToday.map((item, index) => {
             return (
               <li
                 className="list-group-item d-flex justify-content-between"

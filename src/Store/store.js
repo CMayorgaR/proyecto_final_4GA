@@ -126,7 +126,7 @@ const getState = ({ setStore, getActions, getStore }) => {
                     },
                 });
             },
-            handleSubmitRegister: (evento) => {
+            handleSubmitRegister: (evento, navigate) => {
                 const actions = getActions();
                 evento.preventDefault(); //evitamos que la pag vuelva a cargar.
                 const { user } = getStore(); //traeme el usuario del store
@@ -139,6 +139,7 @@ const getState = ({ setStore, getActions, getStore }) => {
                 })
                     .then((res) => res.json())
                     .then((data) => console.log(data));
+                    navigate("/");
             },
             addStarters: (data, send, ruta) => {
                 const actions = getActions();
@@ -227,6 +228,7 @@ const getState = ({ setStore, getActions, getStore }) => {
                     .catch((error) => console.log(error));
             },
             removeStarter: (id) => {
+                const store = getStore();
                 const actions = getActions();
                 fetch(APIusers + "starter/" + id, {
                     method: "DELETE",
@@ -284,6 +286,7 @@ const getState = ({ setStore, getActions, getStore }) => {
             },
             editStarter: (data, id, e) => {
                 e.preventDefault();
+                const store = getStore();
                 const actions = getActions();
                 fetch(APIusers + "starter/" + id, {
                     method: "PUT",
