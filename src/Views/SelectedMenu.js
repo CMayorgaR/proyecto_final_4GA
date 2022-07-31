@@ -10,12 +10,6 @@ import { useContext, useEffect, useState } from "react";
 const SelectedMenu = () => {
     const { store, actions } = useContext(Context);
 
-    /* const sendSelection=(e)=>{
-        e.preventDefault();
-        actions.addSelection(store.selection);
-        return console.log(store.selection)   
-    } */
-
     useEffect(()=> {}, []);
     
     return <>
