@@ -21,7 +21,7 @@ function CalendarMenu() {
         console.log("nuevafecha", dateString);
         //esta funcion es para cuando presiono una fecha x en el calendario me retornara a new_menu
         actions.saveDate(`${dateString}`);
-         history(`/newMenu/${dateString}`); //string variable
+        history(`/newMenu/${dateString}`); //string variable
     }
     
     console.log(date);
@@ -32,7 +32,6 @@ function CalendarMenu() {
                 onClick={"date"} 
                 onChange={(e)=>resend(e)} 
                 value={date} 
-                
             />
         </div>
         </>

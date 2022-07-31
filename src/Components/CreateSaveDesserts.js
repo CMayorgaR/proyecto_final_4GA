@@ -31,6 +31,7 @@ const CreateSaveDesserts = (props) => {
       setSend(false);
     }
   };
+  
   const onSubmit = (e) => {
     e.preventDefault();
     actions.addDesserts({...save, date: props.initialDate}, send, props.ruta);
@@ -42,6 +43,8 @@ const CreateSaveDesserts = (props) => {
     setSend(false);
   };
 
+  console.log(onSubmit)
+  
   let savedDesserts = store.saved_desserts;
   let today = store.saved_date;
   let dessertsOfToday = savedDesserts.filter(function (dessert) {
