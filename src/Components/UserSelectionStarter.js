@@ -10,12 +10,18 @@ const UserSelectionStarter = (props) => {
     actions.getStarters();
   }, []);
 
+  let savedStarters = store.saved_starters;
+  let today = store.saved_date;
+  let startersOfToday = savedStarters.filter(function (starter) {
+    return starter.date == today;
+  });
+
     return (
     <div className="flex-column mb-3 forms col">
       <div className="flex-column">
         <h1 className="fs-6 navbar-text text-center">Entradas disponibles:</h1>
         <ul className="list-group text-start">
-          {store.saved_starters.map((item, index) => {
+          {startersOfToday.map((item, index) => {
             return (
               <li
                 className="list-group-item d-flex justify-content-between"

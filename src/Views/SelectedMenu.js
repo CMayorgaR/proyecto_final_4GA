@@ -7,21 +7,21 @@ import { Context } from "../Store/appContext";
 import { useContext, useEffect, useState } from "react";
 
 
-const SelectedMenu = () => {
+const SelectedMenu = (props) => {
     const { store, actions } = useContext(Context);
 
     useEffect(()=> {}, []);
     
     return <>
-        <Navbar title="Seleccione su menú:" link="/Calendar" />
+        <Navbar title="Seleccione su menú:" link="/usercalendar" />
         <div className="view-color container-fluid">
         <div className="justify-content-between row">
         <UserSelectionStarter />
         <UserSelectionMain />
         <UserSelectionSalad />
         <UserSelectionDessert />
-        <div className= "view-color container-fluid">
-            <h1>Su selección para hoy:</h1>
+        <div className= "view-color mt-5 container-fluid">
+            <span className="navbar-text">Su selección para hoy:</span>
             <ul className="list-group text-start">
             {store.saved_selection.map((item, i)=>{
                 return (

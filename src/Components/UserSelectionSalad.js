@@ -10,12 +10,18 @@ const UserSelectionSalad = (props) => {
     actions.getSalads();
   }, []);
 
+  let savedSalads = store.saved_salads;
+  let today = store.saved_date;
+  let saladsOfToday = savedSalads.filter(function (salad) {
+    return salad.date == today;
+  })
+
   return (
     <div className="flex-column mb-3 forms col">
       <div className="flex-column">
         <h1 className="fs-6 navbar-text text-center">Ensaladas disponibles:</h1>
         <ul className="list-group text-start">
-          {store.saved_salads.map((item, index) => {
+          {saladsOfToday.map((item, index) => {
             return (
               <li
                 className="list-group-item d-flex justify-content-between"
@@ -27,7 +33,7 @@ const UserSelectionSalad = (props) => {
                   <button
                     type="button"
                     className="btn btn-outline-success"
-                    onClick={()=>actions.handleSelection("salad_id", item.id, item.name)}
+                    onClick={()=>actions.handleSelection("salad_id", item.id, item.name, item.date)}
                   >
                     <FontAwesomeIcon icon={faCirclePlus} />
                   </button>
