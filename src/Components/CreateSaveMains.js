@@ -10,6 +10,7 @@ const CreateSaveMains = (props) => {
   const [save, setSave] = useState({
     name: "",
     description: "",
+    date:""
   });
 
   const [send, setSend] = useState(false);
@@ -32,13 +33,20 @@ const CreateSaveMains = (props) => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    actions.addMains(save, send, props.ruta);
+    actions.addMains({...save, date: props.initialDate}, send, props.ruta);
     setSave({
       name: "",
       description: "",
+      date:""
     });
     setSend(false);
   };
+
+  let savedMains = store.saved_mains;
+  let today = store.saved_date;
+  let mainsOfToday = savedMains.filter(function (main) {
+    return main.date == today;
+  })
 
   return (
     <div className="flex-column mb-3 forms col">
@@ -74,7 +82,7 @@ const CreateSaveMains = (props) => {
       <div className="flex-column mt-5">
         <h1 className="fs-6 navbar-text text-center">Opciones guardadas</h1>
         <ul className="list-group text-start">
-          {store.saved_mains.map((item, index) => {
+          {mainsOfToday.map((item, index) => {
             return (
               <li
                 className="list-group-item d-flex justify-content-between"

@@ -20,18 +20,18 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/calendar" element={/* <PrivateRoute> */<Calendar />}/* </PrivateRoute>} */ />
+        <Route path="/calendar" element={<Calendar />} />
         <Route path="/calendar/:date" element={<Calendar />} />
         <Route path='/register' element={<Register />} />
         <Route path='/' element={<Login />} />
         <Route path='/reset' element={<ResetPass />} />
         <Route path='/createProfile' element={<CreateProfile />} />
-        <Route path="/newMenu/:date" element={/* <SuperPrivateRoute> */<NewMenu />} />
+        <Route path="/newMenu/:date" element={<NewMenu />} />
         <Route path="/userSelection" element={<SelectedMenu />} />
         <Route path="/roles" element={<Roles />} />
         <Route path="/delivery" element={<Delivery />} />
         <Route path="/contrasena" element={<Change />} />
-        <Route path="/Evaluacion" element={<Feedback />} />
+        <Route path="/evaluacion" element={<Feedback />} />
       </Routes>
     </BrowserRouter>
   );

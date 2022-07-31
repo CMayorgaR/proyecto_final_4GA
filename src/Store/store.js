@@ -1,49 +1,57 @@
-
-const APIusers = 'http://localhost:8080/'
+const APIusers = "http://localhost:8080/";
 
 const getState = ({ setStore, getActions, getStore }) => {
     return {
         store: {
             user: {
-                full_name: '',
-                email: '',
-                password: '',
-                role_id: ''
+                full_name: "",
+                email: "",
+                password: "",
+                role_id: "",
             },
             starter: {
                 name: "",
                 description: "",
+                date: "",
             },
             main_dish: {
                 name: "",
                 description: "",
+                date: "",
             },
             salad: {
                 name: "",
                 description: "",
+                date: "",
             },
             dessert: {
                 name: "",
                 description: "",
+                date: "",
             },
             saved_starters: [{
                 id:"",
-                name: ""
+                name: "",
+                date:""
             }],
             saved_mains: [{
                 id:"",
-                name: ""
+                name: "",
+                date:""
             }],
             saved_salads: [{
                 id:"",
-                name: ""
+                name: "",
+                date:""
             }],
             saved_desserts: [{
                 id:"",
-                name: ""
+                name: "",
+                date:""
             }],
+            saved_date: "",
             selection: {
-                date: "30 de julio",
+                date: "",
                 user_id: 1,
                 starter_id: 0,
                 main_id: 0,
@@ -54,81 +62,89 @@ const getState = ({ setStore, getActions, getStore }) => {
             ],            
         },
         actions: {
-            handleChangeLogin: (evento) => { //recoje info del formulario
+            handleChangeLogin: (evento) => {
+                //recoje info del formulario
                 const { user } = getStore();
                 setStore({
-                    user: { //user es un objeto
+                    user: {
+                        //user es un objeto
                         ...user, //mantiene todas las propiedades de user.
-                        [evento.target.name]: evento.target.value // guardamos las propiedades que le agregamos en el imput del formulario
-                    }
-                })
+                        [evento.target.name]: evento.target.value, // guardamos las propiedades que le agregamos en el imput del formulario
+                    },
+                });
             },
-            handleSubmitLogin: (evento, navigate) => { //
+            handleSubmitLogin: (evento, navigate) => {
                 evento.preventDefault();
                 localStorage.clear();
-                const { user } = getStore() //traeme el usuario del store
-                fetch(APIusers + 'login', {
+                const { user } = getStore(); //traeme el usuario del store
+                fetch(APIusers + "login", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(user)
-                }).then(res => res.json()).then(data => {
-                    console.log(data)
-                    if (data.access_token) {
-                        localStorage.setItem('token', data.access_token)
-                        localStorage.setItem('role_id', data.role_id)
-                        navigate("/calendar")
-                    } else {
-                        localStorage.clear()
-                    }
+                    body: JSON.stringify(user),
                 })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        console.log(data);
+                        if (data.access_token) {
+                            localStorage.setItem("token", data.access_token);
+                            localStorage.setItem("role_id", data.role_id);
+                            navigate("/calendar");
+                        } else {
+                            localStorage.clear();
+                        }
+                    });
                 setStore({
                     user: {
-                        full_name: '',
-                        email: '',
-                        password: ''
-                    }
-                })
-                console.log(user)
+                        full_name: "",
+                        email: "",
+                        password: "",
+                    },
+                });
             },
 
             test: (data, send, ruta) => {
-                let token = localStorage.getItem('token')
-                console.log(token)
-                fetch(APIusers + 'me', {
+                let token = localStorage.getItem("token");
+                console.log(token);
+                fetch(APIusers + "me", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
+                        Authorization: `Bearer ${token}`,
                     },
                 })
                     .then((res) => res.json())
                     .then((data) => console.log(data))
                     .catch((error) => console.log(error));
-
             },
 
-            handleChangeRegister: (evento) => { //recoje info del formulario
+            handleChangeRegister: (evento) => {
+                //recoje info del formulario
                 const { user } = getStore();
-                console.log(evento.target.name)
+                console.log(evento.target.name);
                 setStore({
-                    user: { //user es un objeto
+                    user: {
+                        //user es un objeto
                         ...user, //mantiene todas las propiedades de user.
-                        [evento.target.name]: evento.target.value // guardamos las propiedades que le agregamos en el imput del formulario
-                    }
-                })
+                        [evento.target.name]: evento.target.value, // guardamos las propiedades que le agregamos en el imput del formulario
+                    },
+                });
             },
-            handleSubmitRegister: (evento, navigate) => { //
+            handleSubmitRegister: (evento, navigate) => {
+                const actions = getActions();
                 evento.preventDefault(); //evitamos que la pag vuelva a cargar.
-                const { user } = getStore() //traeme el usuario del store
-                fetch(APIusers + 'create_user', {
+                const { user } = getStore(); //traeme el usuario del store
+                fetch(APIusers + "create_user", {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json" //el lenguaje de comunicacion es json
+                        "Content-Type": "application/json", //el lenguaje de comunicacion es json
                     },
-                    body: JSON.stringify(user)
-                }).then(res => res.json()).then(data => console.log(data));
+                    body: JSON.stringify(user),
+                })
+                    .then((res) => res.json())
+                    .then((data) => console.log(data));
+                    navigate("/");
             },
             handleSelection: (category, id, name) => {
                 const selection=getStore().selection;
@@ -139,7 +155,7 @@ const getState = ({ setStore, getActions, getStore }) => {
                 return selection
             },
             addStarters: (data, send, ruta) => {
-                const actions = getActions()
+                const actions = getActions();
                 if (send == true) {
                     fetch(ruta, {
                         method: "POST",
@@ -154,7 +170,7 @@ const getState = ({ setStore, getActions, getStore }) => {
                 }
             },
             addMains: (data, send, ruta) => {
-                const actions = getActions()
+                const actions = getActions();
                 if (send == true) {
                     fetch(ruta, {
                         method: "POST",
@@ -169,7 +185,7 @@ const getState = ({ setStore, getActions, getStore }) => {
                 }
             },
             addSalads: (data, send, ruta) => {
-                const actions = getActions()
+                const actions = getActions();
                 if (send == true) {
                     fetch(ruta, {
                         method: "POST",
@@ -184,7 +200,7 @@ const getState = ({ setStore, getActions, getStore }) => {
                 }
             },
             addDesserts: (data, send, ruta) => {
-                const actions = getActions()
+                const actions = getActions();
                 if (send == true) {
                     fetch(ruta, {
                         method: "POST",
@@ -201,7 +217,9 @@ const getState = ({ setStore, getActions, getStore }) => {
             getStarters: () => {
                 fetch(APIusers+'starter')
                     .then((res) => res.json())
-                    .then((data) => { setStore({ saved_starters: data }) }) //if data is true fetch GET setear la variable de la lista store.saved_starters
+                    .then((data) => {
+                        setStore({ saved_starters: data });
+                    }) //if data is true fetch GET setear la variable de la lista store.saved_starters
                     .catch((error) => console.log(error));
             },
             getMains: () => {
@@ -223,6 +241,7 @@ const getState = ({ setStore, getActions, getStore }) => {
                     .catch((error) => console.log(error));
             },
             removeStarter: (id) => {
+                const store = getStore();
                 const actions = getActions();
                 fetch(APIusers+ 'starter/' + id, {
                     method: 'DELETE',
@@ -232,7 +251,9 @@ const getState = ({ setStore, getActions, getStore }) => {
                 })
                     .then((res) => res.json())
                     .then((data) => actions.getStarters())
-                    .catch(error => { console.log(error) });
+                    .catch((error) => {
+                        console.log(error);
+                    });
             },
             removeMain: (id) => {
                 const actions = getActions();
@@ -244,7 +265,9 @@ const getState = ({ setStore, getActions, getStore }) => {
                 })
                     .then((res) => res.json())
                     .then((data) => actions.getMains())
-                    .catch(error => { console.log(error) });
+                    .catch((error) => {
+                        console.log(error);
+                    });
             },
             removeSalad: (id) => {
                 const actions = getActions();
@@ -256,7 +279,9 @@ const getState = ({ setStore, getActions, getStore }) => {
                 })
                     .then((res) => res.json())
                     .then((data) => actions.getSalads())
-                    .catch(error => { console.log(error) });
+                    .catch((error) => {
+                        console.log(error);
+                    });
             },
             removeDessert: (id) => {
                 const actions = getActions();
@@ -268,18 +293,24 @@ const getState = ({ setStore, getActions, getStore }) => {
                 })
                     .then((res) => res.json())
                     .then((data) => actions.getDesserts())
-                    .catch(error => { console.log(error) });
+                    .catch((error) => {
+                        console.log(error);
+                    });
             },
             editStarter: (data, id, e) => {
                 e.preventDefault();
+                const store = getStore();
                 const actions = getActions();
                 fetch(APIusers+ 'starter/' + id, {
                     method: "PUT",
                     headers: {
-                        'Content-Type': 'application/Json'
+                        "Content-Type": "application/Json",
                     },
-                    body: JSON.stringify(data)
-                }).then((res) => { return res.json() })
+                    body: JSON.stringify(data),
+                })
+                    .then((res) => {
+                        return res.json();
+                    })
                     .then((data) => actions.getStarters())
                     .catch((error) => console.log(error));
             },
@@ -289,10 +320,13 @@ const getState = ({ setStore, getActions, getStore }) => {
                 fetch(APIusers + 'main/' + id, {
                     method: "PUT",
                     headers: {
-                        'Content-Type': 'application/Json'
+                        "Content-Type": "application/Json",
                     },
-                    body: JSON.stringify(data)
-                }).then((res) => { return res.json() })
+                    body: JSON.stringify(data),
+                })
+                    .then((res) => {
+                        return res.json();
+                    })
                     .then((data) => actions.getMains())
                     .catch((error) => console.log(error));
             },
@@ -302,10 +336,13 @@ const getState = ({ setStore, getActions, getStore }) => {
                 fetch(APIusers + 'salad/' + id, {
                     method: "PUT",
                     headers: {
-                        'Content-Type': 'application/Json'
+                        "Content-Type": "application/Json",
                     },
-                    body: JSON.stringify(data)
-                }).then((res) => { return res.json() })
+                    body: JSON.stringify(data),
+                })
+                    .then((res) => {
+                        return res.json();
+                    })
                     .then((data) => actions.getSalads())
                     .catch((error) => console.log(error));
             },
@@ -315,10 +352,13 @@ const getState = ({ setStore, getActions, getStore }) => {
                 fetch(APIusers+ 'dessert/' + id, {
                     method: "PUT",
                     headers: {
-                        'Content-Type': 'application/Json'
+                        "Content-Type": "application/Json",
                     },
-                    body: JSON.stringify(data)
-                }).then((res) => { return res.json() })
+                    body: JSON.stringify(data),
+                })
+                    .then((res) => {
+                        return res.json();
+                    })
                     .then((data) => actions.getDesserts())
                     .catch((error) => console.log(error));
             },
@@ -335,7 +375,10 @@ const getState = ({ setStore, getActions, getStore }) => {
                         .catch((error) => console.log(error));
             }
             },
-        }
-    }
+            saveDate: (date) => {
+                setStore({ saved_date: date });
+            },
+}
+}
 
 export default getState;

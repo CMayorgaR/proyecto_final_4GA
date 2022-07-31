@@ -10,6 +10,7 @@ const CreateSaveStarters = (props) => {
   const [save, setSave] = useState({
     name: "",
     description: "",
+    date:""
   });
 
   const [send, setSend] = useState(false);
@@ -33,13 +34,20 @@ const CreateSaveStarters = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    actions.addStarters(save, send, props.ruta);
+    actions.addStarters({...save, date: props.initialDate}, send, props.ruta);
     setSave({
       name: "",
       description: "",
+      date:""
     });
     setSend(false);
   };
+
+  let savedStarters = store.saved_starters;
+  let today = store.saved_date;
+  let startersOfToday = savedStarters.filter(function (starter) {
+    return starter.date == today;
+  })
 
   return (
     <div className="flex-column mb-3 forms col">
@@ -75,7 +83,7 @@ const CreateSaveStarters = (props) => {
       <div className="flex-column mt-5">
         <h1 className="fs-6 navbar-text text-center">Opciones guardadas</h1>
         <ul className="list-group text-start">
-          {store.saved_starters.map((item, index) => {
+          {startersOfToday.map((item, index) => {
             return (
               <li
                 className="list-group-item d-flex justify-content-between"
