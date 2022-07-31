@@ -10,12 +10,18 @@ const UserSelectionDessert = (props) => {
     actions.getDesserts();
   }, []);
 
+  let savedDesserts = store.saved_desserts;
+  let today = store.saved_date;
+  let dessertsOfToday = savedDesserts.filter(function (dessert) {
+    return dessert.date == today;
+  })
+
   return (
     <div className="flex-column mb-3 forms col">
       <div className="flex-column">
         <h1 className="fs-6 navbar-text text-center">Postres disponibles:</h1>
         <ul className="list-group text-start">
-          {store.saved_desserts.map((item, index) => {
+          {dessertsOfToday.map((item, index) => {
             return (
               <li
                 className="list-group-item d-flex justify-content-between"
@@ -27,7 +33,7 @@ const UserSelectionDessert = (props) => {
                   <button
                     type="button"
                     className="btn btn-outline-success"
-                    onClick={()=>actions.handleSelection("dessert_id", item.id, item.name)}
+                    onClick={()=>actions.handleSelection("dessert_id", item.id, item.name, item.date)}
                   >
                     <FontAwesomeIcon icon={faCirclePlus} />
                   </button>

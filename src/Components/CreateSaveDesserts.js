@@ -42,8 +42,6 @@ const CreateSaveDesserts = (props) => {
     });
     setSend(false);
   };
-
-  console.log(onSubmit)
   
   let savedDesserts = store.saved_desserts;
   let today = store.saved_date;

@@ -28,7 +28,7 @@ const Login = () => {
 
                                                 <div className="form-outline mb-4">
                                                     <input onChange={(e)=>actions.handleChangeLogin(e)} name='email' type="email" id="form2Example11" className="form-control" />
-                                                    <label className="form-label" for="form2Example11">Email</label>
+                                                    <label className="form-label" htmlFor="form2Example11">Email</label>
                                                 </div>
 
                                                 <div className="form-outline mb-4">
