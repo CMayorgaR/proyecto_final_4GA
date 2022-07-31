@@ -27,19 +27,32 @@ const getState = ({ setStore, getActions, getStore }) => {
                 description: "",
             },
             saved_starters: [{
+                id:"",
                 name: ""
             }],
             saved_mains: [{
+                id:"",
                 name: ""
             }],
             saved_salads: [{
+                id:"",
                 name: ""
             }],
             saved_desserts: [{
+                id:"",
                 name: ""
             }],
+            selection: {
+                date: "30 de julio",
+                user_id: 1,
+                starter_id: 0,
+                main_id: 0,
+                salad_id: 0,
+                dessert_id:0
+            },
+            saved_selection:[
+            ],            
         },
-
         actions: {
             handleChangeLogin: (evento) => { //recoje info del formulario
                 const { user } = getStore();
@@ -116,7 +129,14 @@ const getState = ({ setStore, getActions, getStore }) => {
                     },
                     body: JSON.stringify(user)
                 }).then(res => res.json()).then(data => console.log(data));
-
+            },
+            handleSelection: (category, id, name) => {
+                const selection=getStore().selection;
+                const saved_selection=getStore().saved_selection;
+                selection[category]= id;
+                saved_selection.push(name);
+                console.log(selection)
+                return selection
             },
             addStarters: (data, send, ruta) => {
                 const actions = getActions()
@@ -302,7 +322,20 @@ const getState = ({ setStore, getActions, getStore }) => {
                     .then((data) => actions.getDesserts())
                     .catch((error) => console.log(error));
             },
+            addSelection: (data) => {
+                    fetch(APIusers+'userselection', {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(data),
+                    })
+                        .then((res) => res.json())
+                        .then((data) => console.log(data)) 
+                        .catch((error) => console.log(error));
+            }
+            },
         }
     }
-}
+
 export default getState;

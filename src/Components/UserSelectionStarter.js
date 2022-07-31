@@ -6,21 +6,20 @@ import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 const UserSelectionStarter = (props) => {
   const { actions, store } = useContext(Context);
 
-
   useEffect(() => {
     actions.getStarters();
   }, []);
 
     return (
     <div className="flex-column mb-3 forms col">
-      <div className="flex-column mt-5">
+      <div className="flex-column">
         <h1 className="fs-6 navbar-text text-center">Entradas disponibles:</h1>
         <ul className="list-group text-start">
           {store.saved_starters.map((item, index) => {
             return (
               <li
                 className="list-group-item d-flex justify-content-between"
-                key={index}
+                key={index} name="starter"
               >
                 <span className="d-flex align-items-center">{item.name}</span>
                 <span>
@@ -28,7 +27,7 @@ const UserSelectionStarter = (props) => {
                   <button
                     type="button"
                     className= "btn btn-outline-success"
-                    value= "name"
+                    onClick={()=>actions.handleSelection("starter_id", item.id, item.name)}
                   >
                     <FontAwesomeIcon icon={faCirclePlus} />
                   </button>

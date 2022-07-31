@@ -12,7 +12,7 @@ const UserSelectionMain = (props) => {
 
   return (
     <div className="flex-column mb-3 forms col">
-      <div className="flex-column mt-5">
+      <div className="flex-column">
         <h1 className="fs-6 navbar-text text-center">Plato de Fondo disponibles:</h1>
         <ul className="list-group text-start">
           {store.saved_mains.map((item, index) => {
@@ -27,6 +27,7 @@ const UserSelectionMain = (props) => {
                   <button
                     type="button"
                     className="btn btn-outline-success"
+                    onClick={()=>actions.handleSelection("main_id", item.id, item.name)}
                   >
                     <FontAwesomeIcon icon={faCirclePlus} />
                   </button>

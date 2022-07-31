@@ -12,7 +12,7 @@ const UserSelectionSalad = (props) => {
 
   return (
     <div className="flex-column mb-3 forms col">
-      <div className="flex-column mt-5">
+      <div className="flex-column">
         <h1 className="fs-6 navbar-text text-center">Ensaladas disponibles:</h1>
         <ul className="list-group text-start">
           {store.saved_salads.map((item, index) => {
@@ -27,6 +27,7 @@ const UserSelectionSalad = (props) => {
                   <button
                     type="button"
                     className="btn btn-outline-success"
+                    onClick={()=>actions.handleSelection("salad_id", item.id, item.name)}
                   >
                     <FontAwesomeIcon icon={faCirclePlus} />
                   </button>
