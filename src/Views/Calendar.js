@@ -1,10 +1,10 @@
 import CalendarMenu from "../Components/CalendarMenu";
-import Navbar from "../Components/Navbar";
+import NavbarLogOut from "../Components/NavbarLogOut";
 
 const Calendar = () => {
     return (
         <>
-            <Navbar title="Seleccione una fecha para comenzar:" link="/"/>
+            <NavbarLogOut title="Seleccione una fecha para comenzar:" link="/"/>
             <CalendarMenu />
         </>
     )

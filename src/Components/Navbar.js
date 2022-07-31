@@ -19,8 +19,4 @@ const Navbar = (props) => {
   </>
 };
 
-{/* <button onClick={()=>{navigate('/'); localStorage.clear()}} className="btn btn-outline-success navbar-text" href="#">
-Log out
-</button> */}
-
 export default Navbar;
