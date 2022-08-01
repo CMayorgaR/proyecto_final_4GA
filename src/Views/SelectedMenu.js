@@ -9,36 +9,38 @@ import { useContext, useEffect, useState } from "react";
 
 const SelectedMenu = (props) => {
     const { store, actions } = useContext(Context);
+    let today = store.saved_date;
 
-    useEffect(()=> {}, []);
-    
+
+    useEffect(() => { }, []);
+
     return <>
         <Navbar title="Seleccione su menú:" link="/usercalendar" />
         <div className="view-color container-fluid">
-        <div className="justify-content-between row">
-        <UserSelectionStarter />
-        <UserSelectionMain />
-        <UserSelectionSalad />
-        <UserSelectionDessert />
-        <div className= "view-color mt-5 container-fluid">
-            <span className="navbar-text">Su selección para hoy:</span>
-            <ul className="list-group text-start">
-            {store.saved_selection.map((item, i)=>{
-                return (
-                    <li
-                      className="list-group-item d-flex justify-content-between"
-                      key={i}
-                    >
-                       <span>{item}</span>    
-                    </li>
-                  ); 
-                  })}
-            <button type="button" className="btn btn-outline-success" onClick={()=>actions.addSelection(store.selection)}>Guardar selección</button>
-            </ul>
+            <div className="justify-content-between row">
+                <UserSelectionStarter />
+                <UserSelectionMain />
+                <UserSelectionSalad />
+                <UserSelectionDessert />
+                <div className="view-color mt-5 container-fluid">
+                    <span className="navbar-text">Su selección para hoy:</span>
+                    <ul className="list-group text-start">
+                        {store.saved_selection.map((item, i) => {
+                            return (
+                                <li
+                                    className="list-group-item d-flex justify-content-between"
+                                    key={i}
+                                >
+                                    <span>{item}</span>
+                                </li>
+                            );
+                        })}
+                        <button type="button" className="btn btn-outline-success" onClick={() => actions.addSelection(store.selection, today)}>Guardar selección</button>
+                    </ul>
+                </div>
+            </div>
         </div>
-        </div>
-        </div>
-        
+
     </>
 }
 

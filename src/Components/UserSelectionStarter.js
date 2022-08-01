@@ -33,7 +33,7 @@ const UserSelectionStarter = (props) => {
                   <button
                     type="button"
                     className= "btn btn-outline-success"
-                    onClick={()=>actions.handleSelection("starter_id", item.id, item.name)}
+                    onClick={()=>{actions.handleSelection("starter_id", item.id, item.name, today)}}
                   >
                     <FontAwesomeIcon icon={faCirclePlus} />
                   </button>

@@ -154,12 +154,19 @@ const getState = ({ setStore, getActions, getStore }) => {
         navigate("/");
       },
 
-      handleSelection: (category, id, name) => {
-        const selection = getStore().selection;
+      handleSelection: (category, id, name, today) => {
+        const store = getStore()
+        const { selection } = getStore()
+        console.log(store.selection)
         const saved_selection = getStore().saved_selection;
         selection[category] = id;
         saved_selection.push(name);
-        console.log(selection);
+        setStore({
+          selection:{
+            ...selection,
+            date:today
+          }
+        })
         return selection;
       },
 
@@ -377,6 +384,18 @@ const getState = ({ setStore, getActions, getStore }) => {
       addSelection: (data) => {
         fetch(APIusers + "userselection", {
           method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data))
+          .catch((error) => console.log(error));
+      },
+      getSelection: (data) => {
+        fetch(APIusers + "userselection", {
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
