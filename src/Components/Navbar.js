@@ -7,7 +7,7 @@ const Navbar = (props) => {
   return <>
   <nav className="navbar">
     <div className="container-fluid">
-      <a className="navbar-brand text-success navbar-title">MM <FontAwesomeIcon icon={faBellConcierge} style={{fontSize:"30px", color:"green"}}/></a>
+      <a className="navbar-brand text-success navbar-title"><FontAwesomeIcon icon={faBellConcierge} style={{fontSize:"30px", color:"green"}}/> MM </a>
       <span className="navbar-text">{props.title}</span>
       <span className="d-flex">
         <Link to={props.link} className="btn btn-outline-success navbar-text">

@@ -16,13 +16,13 @@ const SelectedMenu = (props) => {
 
     return <>
         <Navbar title="Seleccione su menú:" link="/usercalendar" />
-        <div className="view-color container-fluid">
-            <div className="justify-content-between row">
+        <div className="view-color">
+            <div className="container-fluid justify-content-between row">
                 <UserSelectionStarter />
                 <UserSelectionMain />
                 <UserSelectionSalad />
                 <UserSelectionDessert />
-                <div className="view-color mt-5 container-fluid">
+                <div className="row">
                     <span className="navbar-text">Su selección para hoy:</span>
                     <ul className="list-group text-start">
                         {store.saved_selection.map((item, i) => {
@@ -35,6 +35,7 @@ const SelectedMenu = (props) => {
                                 </li>
                             );
                         })}
+                        <br/>
                         <button type="button" className="btn btn-outline-success" onClick={() => actions.addSelection(store.selection, today)}>Guardar selección</button>
                     </ul>
                 </div>

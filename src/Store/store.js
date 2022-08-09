@@ -153,7 +153,6 @@ const getState = ({ setStore, getActions, getStore }) => {
           .then((data) => console.log(data));
         navigate("/");
       },
-
       handleSelection: (category, id, name, today) => {
         const store = getStore()
         const { selection } = getStore()
@@ -169,7 +168,6 @@ const getState = ({ setStore, getActions, getStore }) => {
         })
         return selection;
       },
-
       addStarters: (data, send, ruta) => {
         const actions = getActions();
         if (send == true) {
