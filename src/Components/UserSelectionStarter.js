@@ -1,13 +1,22 @@
 import { useContext, useState, useEffect } from "react";
-import { Modal, ModalBody, ModalHeader } from "react-bootstrap";
+import DescriptionModal from "./DescriptionModal";
+import DescriptionMuiModal from "./DescriptionMuiModal";
 import { Context } from "../Store/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlus, faCircleInfo, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCirclePlus, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 
 const UserSelectionStarter = (props) => {
   const { actions, store } = useContext(Context);
 
-  const [modal, setModal] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true)
+  };
+
+  const handleClose = () => {
+    setOpen(false)
+  };
 
   useEffect(() => {
     actions.getStarters();
@@ -31,13 +40,14 @@ const UserSelectionStarter = (props) => {
                 key={index}
                 name="starter"
               >
+               <DescriptionMuiModal open={open} onClose={()=> handleClose()} description={item.description} /> 
                 <span className="d-flex align-items-center">{item.name}</span>
                 <span>
                   &nbsp;
                   <button
                     type="button"
                     className="btn btn-outline-success"
-                    onClick={() => setModal(true)}
+                    onClick={()=>handleOpen()}
                   >
                     <FontAwesomeIcon icon={faCircleInfo} />
                   </button>
@@ -50,21 +60,9 @@ const UserSelectionStarter = (props) => {
                     <FontAwesomeIcon icon={faCirclePlus} />
                   </button>
                 </span>
-                <Modal  show={modal}  className="container-fluid justify-content-center">
-                  <ModalHeader className="d-flex justify-content-between navbar-text">
-                    Información Nutricional/Detalles:
-                    <button
-                      className="btn btn-outline-danger"
-                      onClick={() => setModal(false)}
-                    >
-                      <FontAwesomeIcon icon={faCircleXmark} />
-                    </button>
-                  </ModalHeader>
-                  <ModalBody>{item.description}</ModalBody>
-                </Modal>
+                
               </li>
-            );
-          })}
+            );})}
         </ul>
       </div>
     </div>
