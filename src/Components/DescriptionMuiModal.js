@@ -22,7 +22,7 @@ const DescriptionMuiModal = (props) => {
           onClose={props.onClose}
           aria-describedby="alert-dialog-slide-description"
         >
-          <DialogTitle className="text-success"><h3>Información Nutricional:</h3></DialogTitle>
+          <DialogTitle className="text-success"><h2>Información Nutricional:</h2></DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-slide-description">
               {props.description}

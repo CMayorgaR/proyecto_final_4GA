@@ -1,5 +1,4 @@
 import { useContext, useState, useEffect } from "react";
-import { Modal, ModalBody, ModalHeader } from "react-bootstrap";
 import { Context } from "../Store/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus, faCircleInfo, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
@@ -49,14 +48,6 @@ const UserSelectionMain = (props) => {
                     <FontAwesomeIcon icon={faCirclePlus} />
                   </button>
                 </span>
-                <Modal show={modal} className="container-fluid justify-content-center">
-                  <ModalHeader className="d-flex justify-content-between navbar-text">
-                  Información Nutricional/Detalles:
-                  <button className="btn btn-outline-danger" onClick={()=> setModal(false)}>
-                  <FontAwesomeIcon icon={faCircleXmark} />
-                  </button></ModalHeader>
-                  <ModalBody>{item.description}</ModalBody>
-                </Modal>
               </li>
             );
           })}
