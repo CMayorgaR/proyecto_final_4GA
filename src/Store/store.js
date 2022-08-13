@@ -391,8 +391,8 @@ const getState = ({ setStore, getActions, getStore }) => {
           .then((data) => console.log(data))
           .catch((error) => console.log(error));
       },
-      getSelection: (data) => {
-        fetch(APIusers + "userselection", {
+      getSelection: (data, id) => {
+        fetch(APIusers + "userselection" + id, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
