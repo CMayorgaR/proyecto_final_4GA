@@ -1,38 +1,25 @@
 import { useContext, useState, useEffect } from "react";
-import DescriptionModal from "./DescriptionModal";
 import DescriptionMuiModal from "./DescriptionMuiModal";
 import { Context } from "../Store/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
-import zIndex from "@mui/material/styles/zIndex";
 
-const UserSelectionStarter = (props) => {
+
+const UserSelectionStarter = () => {
+  
   const { actions, store } = useContext(Context);
 
-  const [open, setOpen] = useState([false, false, false]);
+  const [open, setOpen] = useState(false);
 
-  const handleOpen = (i) => {
-    setOpen(
-      open.map((e, index) => {
-        if (i === index) {
-          return true;
-        } else {
-          return false;
-        }
-      })
-    )
+  const [description, setDescription] = useState("")
+
+  const handleOpen = (description) => {
+    setOpen(true)
+    setDescription(description)
   };
 
-  const handleClose = (i) => {
-    setOpen(
-      open.map((e, index) => {
-        if (i === index) {
-          return false;
-        } else {
-          return true;
-        }
-      })
-    )
+  const handleClose = () => {
+    setOpen(false)
   };
 
   useEffect(() => {
@@ -43,14 +30,6 @@ const UserSelectionStarter = (props) => {
   let today = store.saved_date;
   let startersOfToday = savedStarters.filter(function (starter) {
     return starter.date == today});
-
-  /* const handleModal = (index) => {
-  setOpen([...open, false])
-  };
-
-  useEffect (() => {
-    handleModal();
-  }, []); */
 
   return (
     <div className="flex-column mb-3 forms col">
@@ -64,14 +43,14 @@ const UserSelectionStarter = (props) => {
                 key={index}
                 name="starter"
               >
-               <DescriptionMuiModal open={open[index]} onClose={()=> handleClose(index)} description={item.description} /> 
+                
                 <span className="d-flex align-items-center">{item.name}</span>
                 <span>
                   &nbsp;
                   <button
                     type="button"
                     className="btn btn-outline-success"
-                    onClick={()=>handleOpen(index)}
+                    onClick={()=>handleOpen(item.description)}
                   >
                     <FontAwesomeIcon icon={faCircleInfo} />
                   </button>
@@ -88,6 +67,7 @@ const UserSelectionStarter = (props) => {
             );
             })}
         </ul>
+        <DescriptionMuiModal open={open} onClose={()=> handleClose()} description={description} />
       </div>
     </div>
   );

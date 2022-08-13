@@ -1,12 +1,24 @@
 import { useContext, useState, useEffect } from "react";
 import { Context } from "../Store/appContext";
+import DescriptionMuiModal from "./DescriptionMuiModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus, faCircleInfo, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 const UserSelectionDessert = (props) => {
   const { actions, store } = useContext(Context);
 
-  const [modal, setModal] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const [description, setDescription] = useState("")
+
+  const handleOpen = (description) => {
+    setOpen(true)
+    setDescription(description)
+  };
+
+  const handleClose = () => {
+    setOpen(false)
+  };
 
   useEffect(() => {
     actions.getDesserts();
@@ -35,7 +47,7 @@ const UserSelectionDessert = (props) => {
                   <button 
                   type="button" 
                   className="btn btn-outline-success"
-                  onClick={()=>setModal(true)}
+                  onClick={()=>handleOpen(item.description)}
                   >
                     <FontAwesomeIcon icon={faCircleInfo} />
                   </button>
@@ -52,6 +64,7 @@ const UserSelectionDessert = (props) => {
             );
           })}
         </ul>
+        <DescriptionMuiModal open={open} onClose={()=> handleClose()} description={description} />
       </div>
     </div>
   );
