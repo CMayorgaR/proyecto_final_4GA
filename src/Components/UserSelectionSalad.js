@@ -33,7 +33,7 @@ const UserSelectionSalad = (props) => {
   return (
     <div className="flex-column mb-3 forms col">
       <div className="flex-column">
-        <h1 className="fs-6 navbar-text text-center">Ensaladas:</h1>
+        <h1 className="fs-6 option-text text-center">Ensaladas:</h1>
         <ul className="list-group text-start">
           {saladsOfToday.map((item, index) => {
             return (

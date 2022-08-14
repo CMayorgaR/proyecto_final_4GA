@@ -52,7 +52,7 @@ const CreateSaveStarters = (props) => {
   return (
     <div className="flex-column mb-3 forms col">
       <form onSubmit={(evento) => onSubmit(evento)}>
-        <label className="form-label">{props.title}</label>
+        <label className="form-label option-text">{props.title}</label>
         <input
           type="text"
           name="name"
@@ -81,7 +81,7 @@ const CreateSaveStarters = (props) => {
         </button>
       </form>
       <div className="flex-column mt-5">
-        <h1 className="fs-6 navbar-text text-center">Opciones guardadas</h1>
+        <h1 className="fs-6 option-text text-center">Opciones guardadas</h1>
         <ul className="list-group text-start">
           {startersOfToday.map((item, index) => {
             return (

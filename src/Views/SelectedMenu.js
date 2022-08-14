@@ -23,7 +23,7 @@ const SelectedMenu = (props) => {
                 <UserSelectionSalad />
                 <UserSelectionDessert />
                 <div className="row">
-                    <span className="navbar-text">Su selección para hoy:</span>
+                    <span className="option-text">Su selección para hoy:</span>
                     <ul className="list-group text-start">
                         {store.saved_selection.map((item, i) => {
                             return (
