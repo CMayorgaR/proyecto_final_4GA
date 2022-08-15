@@ -153,16 +153,21 @@ const getState = ({ setStore, getActions, getStore }) => {
           .then((data) => console.log(data));
         navigate("/");
       },
-
-      handleSelection: (category, id, name) => {
-        const selection = getStore().selection;
+      handleSelection: (category, id, name, today) => {
+        const store = getStore()
+        const { selection } = getStore()
+        console.log(store.selection)
         const saved_selection = getStore().saved_selection;
         selection[category] = id;
         saved_selection.push(name);
-        console.log(selection);
+        setStore({
+          selection:{
+            ...selection,
+            date:today
+          }
+        })
         return selection;
       },
-
       addStarters: (data, send, ruta) => {
         const actions = getActions();
         if (send == true) {
@@ -377,6 +382,18 @@ const getState = ({ setStore, getActions, getStore }) => {
       addSelection: (data) => {
         fetch(APIusers + "userselection", {
           method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data))
+          .catch((error) => console.log(error));
+      },
+      getSelection: (data, id) => {
+        fetch(APIusers + "userselection" + id, {
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
           },

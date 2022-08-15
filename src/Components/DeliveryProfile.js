@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import '../Styles/calendarMenu.css';
-import ModalMenu from '../Components/ModalMenu';
+/* import ModalMenu from '../Components/ModalMenu'; */
 import { Modal, Button } from 'react-bootstrap';
 
 function DeliveryProfile() {

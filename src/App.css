@@ -1,5 +1,5 @@
 .navbar {
-    background: #1E4A13;
+    background: #040903;
     width: 100%
 }
 
@@ -60,22 +60,30 @@
   margin-left: 30%;
 }
 
-
-
 .navbar-text {
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 20px;
     line-height: 36px;
     letter-spacing: 0.1em;
     color: #6fb712;
 }
 
+.option-text {
+  font-style: normal;
+    font-weight: 350;
+    font-size: 15px;
+    line-height: 36px;
+    letter-spacing: 0.1em;
+    color: black
+}
+
 .view-color {
     position: relative;
     width: 100%;
     height: 886px;
-    background: linear-gradient(270deg, #D3D8E9 0%, #B9CD41 100%);
+    background: #a7d270;
+    min-height: 100hv;
 }
 
 .forms {
@@ -96,8 +104,9 @@
     padding-left: 30px;
     padding-right: 30px;
 }
+
 body{
-  background: linear-gradient(270deg, #D3D8E9 0%, #B9CD41 100%);
+  background:  #a7d270/* linear-gradient(270deg, #D3D8E9 0%, #B9CD41 100%) */
 }
     
 

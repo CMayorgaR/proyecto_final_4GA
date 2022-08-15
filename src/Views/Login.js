@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { Context } from "../Store/appContext";
+import Logo4 from "../Assets/Logo4.png"
 import { Link, useNavigate } from "react-router-dom";
 
 
@@ -19,13 +20,13 @@ const Login = () => {
                                     <div className="col-lg-6">
                                         <div className="card-body p-md-5 mx-md-4">
 
-                                            <div className="text-center">
-                                                <Link to='/'><h4 className="mt-1 mb-5 pb-1">MasterMenu</h4></Link>
+                                            <div className="text-center" style={{"margin-bottom":"20px"}}>
+                                                <Link to='/'><img src={Logo4} /></Link>
                                             </div>
 
                                             <form onSubmit={(e)=>actions.handleSubmitLogin(e,navigate)}>
-                                                <p>Entra a tu cuenta</p>
-
+                                                <h5>Ingresa a tu cuenta:</h5>
+                                                &nbsp;
                                                 <div className="form-outline mb-4">
                                                     <input onChange={(e)=>actions.handleChangeLogin(e)} name='email' type="email" id="form2Example11" className="form-control" />
                                                     <label className="form-label" htmlFor="form2Example11">Email</label>
@@ -39,12 +40,12 @@ const Login = () => {
                                                 <div className="text-center pt-1 mb-5 pb-1">
                                                     <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 mx-3" type="submit">Log
                                                         in</button>
-                                                    <Link className="text-muted" to='/reset'>Olvidaste tu contraseña?</Link>
+                                                    <Link className="text-muted" to='/reset'>¿Olvidaste tu contraseña?</Link>
                                                 </div>
 
                                                 <div className="d-flex align-items-center justify-content-center pb-4">
-                                                    <p className="mb-0 me-3">No tienes cuenta?</p>
-                                                    <Link to='/register'><button type="button" className="btn btn-outline-success">Inscribete!</button></Link>
+                                                    <p className="mb-0 me-3">¿No tienes cuenta?</p>
+                                                    <Link to='/register'><button type="button" className="btn btn-outline-success">¡Regístrate!</button></Link>
                                                 </div>
 
                                             </form>
