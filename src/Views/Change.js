@@ -4,7 +4,7 @@ import Navbar from "../Components/Navbar";
 function Change(){
     return(
         <>
-            <Navbar title="Cambiar Contraseña" />
+            <Navbar title="Cambiar Contraseña" link="/Calendar" />
             <ChangePassword />
         </>
     );

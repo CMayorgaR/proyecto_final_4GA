@@ -5,7 +5,7 @@ import Navbar from "../Components/Navbar";
 function Feedbackk(){
     return(
         <>
-            <Navbar title="Evaluaciones De Manu" />
+            <Navbar title="Evaluaciones De Manu" link="/" />
             <Feedback />
         </>
     );

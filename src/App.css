@@ -1,16 +1,25 @@
 .navbar {
-    background: #1E4A13;
-    width: 100%
+    background: #a3d594;
+    left: 5%;  
+    width: 90%;
+    border-radius: inherit;
+     
 }
+
+.entr{
+  color: #0d0d0c;
+
+}
+
 
 .navbar-title {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 50px;
-    color: #afcc88;
+    font-style: oblique;
+    font-weight: 950;
+    font-size: 60px;
+    line-height: 20px;
+    color: #f9fbf8;
+    
 }
-
 .pass{
   margin-left: 20%;
   margin-top:15% ;
@@ -18,9 +27,9 @@
 }
 
 .buton{
-  width: 25%;
-  margin-left: 35%;
-  background-color: #1E4A13;
+  width: 50%;
+  margin-left: 80%;
+  background-color: #4c5849;
   border-radius: 20px;
 }
 
@@ -63,20 +72,21 @@
 
 
 .navbar-text {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 36px;
-    letter-spacing: 0.1em;
-    color: #6fb712;
+    font-family: serif;
+    font-size: 90%;
+    color: #0d0d0c;
+    font-weight:lighter;
 }
+
 
 .view-color {
     position: relative;
     width: 100%;
-    height: 886px;
-    background: linear-gradient(270deg, #D3D8E9 0%, #B9CD41 100%);
+    height: 150px;
+    background: linear-gradient(270deg,  #bbf3ac, #e9efc5 100%);
+    
 }
+
 
 .forms {
     width: 200%;
@@ -91,17 +101,16 @@
 }
 
 .vista-calendar {
-    padding-top: 30px;
-    text-align: center;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-top: 90px;
+    padding-left: 35%;
+  
+    
+    
 }
 body{
-  background: linear-gradient(270deg, #D3D8E9 0%, #B9CD41 100%);
+  background: linear-gradient(270deg,  #ccfcc6 0%,#e9efc5 100%);
 }
     
-
-
 img {
   width: 100%;
   border-radius: 10px;
@@ -110,7 +119,7 @@ img {
 
 a:-webkit-any-link {
   text-decoration: none;
-  color: #5C990D;
+  color: #748064;
   cursor: pointer;
 }
 
@@ -123,14 +132,31 @@ form {
 }
 
 .imagenOne{
-  width: 70%;
+  width: 80%;
   padding-left: 10% ;
-  border-radius: 30px;
+  border-radius: 100%;
 }
 
 .coll{
   padding-left: 10% ;
 }
+
+.feedback{
+      margin:50px;
+      height:70px;
+      width: 70%;
+
+}
+
+.buuton{
+  background-color: #1E4A13;
+  border-radius: 200px;
+}
+
+.menuu{
+  right: 50%;
+}
+
 
 
 
